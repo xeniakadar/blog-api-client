@@ -112,6 +112,35 @@ export default function Homepage() {
     }
   }
 
+  async function createComment(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/64df8086a13896427c2aac09/comments`, {
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          "text": "Wow this post is amazing"
+        })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("comment added", data);
+      } else {
+        const errorData = await response.json();
+        console.error("error creating post: ", errorData);
+      }
+    } catch (error) {
+      console.error("an error occurred: ", error)
+    }
+  }
+
+  async function deleteComment(e) {
+
+  }
+
 
   return (
     <div>
@@ -120,6 +149,7 @@ export default function Homepage() {
     <button onClick={loginUser}>login user</button>
     <button onClick={createBlogpost}>Create post</button>
     <button onClick={deleteBlogpost}>Delete post</button>
+    <button onClick={createComment}>create comment</button>
     </div>
   )
 }
