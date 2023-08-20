@@ -116,7 +116,7 @@ export default function Homepage() {
   async function createComment(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/64df8086a13896427c2aac09/comments`, {
+      const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/64e0e17087af0283686a482d/comments`, {
         method:"POST",
         headers: {
           "Content-Type": "application/json",

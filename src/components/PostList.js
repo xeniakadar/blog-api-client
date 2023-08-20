@@ -1,16 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PostHomepage from './PostHomepage';
 
-import ThemeContext from '../contexts/ThemeContext';
-
 export default function PostList() {
-
-  const { theme, setTheme } = useContext(ThemeContext);
-
-  const toggleTheme = () => {
-      const newTheme = theme === 'light' ? 'dark' : 'light';
-      setTheme(newTheme);
-  };
 
   const [blogposts, setBlogposts] = useState([]);
 
@@ -36,10 +27,11 @@ export default function PostList() {
 
   return (
     <div>
-        <h1 className={`${theme}`}>Bloposts</h1>
+        <h1 className={`posts-container`}>Bloposts</h1>
         {blogposts.map((post) => (
           <PostHomepage
           key={post._id}
+          blogpostId={post._id}
           username={post.username}
           title={post.title}
           text={post.text}
