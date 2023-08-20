@@ -1,12 +1,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@200;300;700&display=swap');
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #dee3e3;
+  height: 100%;
+}
+
+/* navbar */
+
+nav {
+  padding: 10px;
+
+  margin: 10px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.navbar--right {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(169, 107, 106, 0.5) ;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  line-height: 4em;
+}
+
+.navbar--right a,
+.navbar--right img {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  font-size: 3rem;
+}
+
+.menu-icon {
+  display: block;
+  height: 40px;
+}
+
+.close-icon {
+  height: 40px;
+}
+
+.navbar--right.show {
+  display: flex;
+}
+
+@media (min-width: 770px) {
+  .navbar--right {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    z-index: 1;
+  }
+
+  .navbar--right a {
+    color: #333;
+    font-size: 1rem;
+  }
+
+  .menu-icon {
+    display: none;
+    height: 2em;
+  }
+
+  .close-icon {
+    display: none;
+  }
 }
 
 /* blogpost list */
+
+.posts-container {
+  margin: 1em;
+}
 
 
 .blogpost-container,
@@ -15,6 +100,11 @@ body {
   padding: 10px;
   border-radius: 25px;
   margin: 10px;
+}
+.blogpost-container {
+  margin:0px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .blogpost-container {
@@ -34,6 +124,19 @@ body {
 .post .title span {
   color: #ed9795;
   font-weight: 600;
+}
+
+.home-btn {
+  letter-spacing: 5px;
+  font-family: 'Handjet', cursive;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 30px;
+  color: #595757;
+}
+
+.home-btn span {
+  color: #ed9795;
 }
 
 
@@ -64,7 +167,7 @@ body {
 }
 
 .info {
-  width: 20em;
+  max-width: 20em;
   font-weight: 400;
 }
 
@@ -92,7 +195,7 @@ body {
   background-color: white;
   padding: 20px;
   border-radius: 25px;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .blogpost-detail-container .text {

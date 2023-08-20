@@ -26,8 +26,8 @@ export default function PostList() {
 
 
   return (
-    <div>
-        <h1 className={`posts-container`}>Bloposts</h1>
+    <div className={`posts-container`}>
+        <h1 >Bloposts</h1>
         {blogposts.map((post) => (
           <PostHomepage
           key={post._id}
