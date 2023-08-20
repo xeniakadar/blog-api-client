@@ -31,6 +31,8 @@ export default function PostDetail() {
 
   async function createComment(e) {
     e.preventDefault();
+    console.log("submitting form")
+    console.log(commentText);
     try {
       const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/${blogpostId}/comments`, {
         method:"POST",
@@ -61,7 +63,7 @@ export default function PostDetail() {
 
   return (
     <div className='blogpost-detail-container'>
-      <h1 className='topic'>{(blogpost.topic.title).toUpperCase()} <span>/ {(blogpost.title).toUpperCase()}</span> </h1>
+      <h1 className='topic'>{blogpost.topic.title.toUpperCase()} <span>/ {blogpost.title.toUpperCase()}</span> </h1>
       <p className='text'>{blogpost.text}</p>
       <p className='info'>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
 
@@ -76,9 +78,9 @@ export default function PostDetail() {
           ))}
 
           <form onSubmit={createComment}>
-            <label htmlFor="comment">Add a comment</label>
-            <input type="text" id="comment" name="comment" placeholder=' comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
-            <input className='btn-submit' type="submit" value="submit comment" />
+            {/* <label htmlFor="comment">Add a comment</label> */}
+            <input type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
+            <input className='btn-submit' type="submit" value="Add" />
           </form>
         </div>
 

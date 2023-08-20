@@ -205,10 +205,12 @@ ul {
 /* comments container */
 
 .comment-details,
-.comments-container {
+.comments-container,
+form {
   padding: 10px;
   border-radius: 25px;
-  margin: 10px;
+  margin-top:10px;
+  margin-bottom:10px;
 }
 
 .comments-container h3  {
@@ -241,15 +243,30 @@ ul {
   font-size: 16px;
   font-weight: 200;
   letter-spacing: 1px;
-  border: 1px solid black;
+  border: none;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 25px;
+  margin-left: 1em;
   background-color: #bfbfbf;
-  background-color: #ffffff;
   transition: all .3s ease-in-out;
-  padding: 10px 30px 10px;
+  padding: 0.5em;
+  width: 100%;
 }
 
 .btn-submit:hover {
-  background-color: #dee3e3;
+  background-color: white;
+}
+
+form {
+  background-color: #6c6c6c;
+  color: white;
+  display: flex;
+}
+
+
+#comment {
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
 }
