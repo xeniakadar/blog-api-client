@@ -1,10 +1,15 @@
 import React, {useContext} from 'react';
-import ThemeContext from '../contexts/ThemeContext';
+import { Link } from 'react-router-dom';
 
 export default function Navbar () {
 
   return (
-    <button>Change theme</button>
+    <nav>
+      <ul>
+        <Link to={"/"}>Home</Link>
+        <Link to={"/blogposts"}>Blogposts</Link>
+      </ul>
+    </nav>
   )
 
 }

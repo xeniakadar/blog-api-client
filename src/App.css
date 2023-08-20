@@ -3,17 +3,11 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: #dee3e3;
 }
 
-.light {
-  background-color: white;
-  color: black;
-}
+/* blogpost list */
 
-.dark {
-  background-color: rgb(13, 62, 117);
-  color: white;
-}
 
 .blogpost-container,
 .blogpost-container .post,
@@ -37,27 +31,36 @@ body {
   background-color: #ebebeb;
 }
 
-.post .title {
-  color: #4f808e;
+.post .title span {
+  color: #ed9795;
   font-weight: 600;
-
 }
 
-.post .title a {
+
+.post .title a,
+.blogpost-detail-container .topic span {
   text-decoration: none;
-  color: #4f808e;
+  color: #ed9795;
   font-weight: 600;
+  transition: all .2s ease-in-out;
 }
 
-.post .title {
+.post .title a:hover {
+  color: #a96b6a
+}
+
+.post .title,
+.blogpost-detail-container .topic {
   font-weight: 300;
   margin: 0;
   padding: 0;
+  letter-spacing: 1px;
 }
 
 .post .text {
   font-weight: 300;
   color: #6c6c6c;
+  /* letter-spacing: 1px; */
 }
 
 .info {
@@ -70,9 +73,80 @@ body {
   color: #595757;
 }
 
-.info span {
+.info span,
+.comment-info span  {
   font-style: italic;
   font-weight: 300;
+}
 
 
+/* blogpost detail */
+
+.blogpost-detail-container {
+  margin: 2em;
+}
+
+.blogpost-detail-container .topic,
+.blogpost-detail-container .text,
+.blogpost-detail-container .info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.blogpost-detail-container .text {
+  font-size: 1.2em;
+}
+
+/* comments container */
+
+.comment-details,
+.comments-container {
+  padding: 10px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.comments-container h3  {
+ margin-left: 10px;
+ font-style: italic;
+ color:#6c6c6c
+}
+
+.comments-container {
+  background-color: #bfbfbf;
+  margin-top: 2.5em;
+  z-index: 1;
+}
+
+.comment-details {
+  background-color: #ebebeb;
+}
+
+.comment-details .info {
+  color:#595757
+}
+
+.span-user {
+  font-style: normal;
+  font-weight: 900;
+}
+
+
+.btn-submit {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #bfbfbf;
+  background-color: #ffffff;
+  transition: all .3s ease-in-out;
+  padding: 10px 30px 10px;
+}
+
+.btn-submit:hover {
+  background-color: #dee3e3;
 }

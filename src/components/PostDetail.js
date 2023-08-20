@@ -5,6 +5,7 @@ import { formatTimestamp } from '../helpers/formatTimestamp';
 export default function PostDetail() {
 
   const [blogpost, setBlogpost] = useState(null);
+  const [commentText, setCommentText ] = useState('');
 
   const {blogpostId} = useParams();
 
@@ -28,25 +29,59 @@ export default function PostDetail() {
     fetchBlogpost();
   }, [blogpostId]);
 
+  async function createComment(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/${blogpostId}/comments`, {
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          "text": commentText
+        })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("comment added", data);
+        setCommentText('');
+      } else {
+        const errorData = await response.json();
+        console.error("error creating post: ", errorData);
+      }
+    } catch (error) {
+      console.error("an error occurred: ", error)
+    }
+  }
+
   if (!blogpost) {
     return <p>Loading ... </p>
   }
 
   return (
     <div className='blogpost-detail-container'>
-      <h1>{blogpost.topic.title} / {blogpost.title} </h1>
-      <p>{blogpost.text}</p>
-      <div className='info'>
-        <p>{blogpost.username} - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
-      </div>
-      <div className='comments-container'>
-        {blogpost.comments.map(comment => (
-          <div className='comment-details' key={comment.id || comment._id}>
-            <p>{comment.username} - {formatTimestamp(comment.timestamp)}</p>
-            <p>{comment.text}</p>
-          </div>
-        ))}
-      </div>
+      <h1 className='topic'>{(blogpost.topic.title).toUpperCase()} <span>/ {(blogpost.title).toUpperCase()}</span> </h1>
+      <p className='text'>{blogpost.text}</p>
+      <p className='info'>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
+
+        <div className='comments-container'>
+        {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments</h3>}
+
+          {blogpost.comments.map(comment => (
+            <div className='comment-details' key={comment.id || comment._id}>
+              <p className='comment-info'>{comment.username} - <span>{formatTimestamp(comment.timestamp)}</span></p>
+              <p className='comment-text'>{comment.text}</p>
+            </div>
+          ))}
+
+          <form onSubmit={createComment}>
+            <label htmlFor="comment">Add a comment</label>
+            <input type="text" id="comment" name="comment" placeholder=' comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
+            <input className='btn-submit' type="submit" value="submit comment" />
+          </form>
+        </div>
+
     </div>
   )
 }

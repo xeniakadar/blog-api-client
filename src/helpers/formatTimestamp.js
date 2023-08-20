@@ -10,6 +10,9 @@ const formatTimestamp = (timestamp) => {
   if (diffMinutes < 1) {
     return "less than a minute ago"
   }
+  if (diffMinutes === 1) {
+    return "1 minute ago"
+  }
   if (diffMinutes < 60) {
     return `${diffMinutes} minutes ago`
   }
@@ -18,6 +21,9 @@ const formatTimestamp = (timestamp) => {
   }
   if (diffHours < 24) {
     return `${diffHours} hours ago`
+  }
+  if (diffDays === 1) {
+    return `${diffDays} day ago`
   }
   if (diffDays < 7) {
     return `${diffDays} days ago`
