@@ -11,6 +11,7 @@ function Navbar() {
     setMenuVisible(!menuVisible);
   };
 
+
   return (
     <nav>
       <ul>
@@ -24,10 +25,11 @@ function Navbar() {
           <div className={`navbar--right ${menuVisible ? "show" : ""}`}>
             {/* <h1 className={`close-icon ${menuVisible ? "" : "show"}`} onClick={toggleMenu} >x</h1> */}
             <img src={closeSVG} className={`close-icon ${menuVisible ? "" : "show"}`} onClick={toggleMenu} />
-            <Link to={"/blogposts"}>Blogposts</Link>
-            <Link to={"/blogposts/create"}>Create Post</Link>
-            <Link to={"/register"}>Sign Up</Link>
-            <Link to={"/login"}>Sign In</Link>
+            <Link to={"/blogposts"} onClick={toggleMenu} >Blogposts</Link>
+            <Link to={"/topics"} onClick={toggleMenu} >Categories</Link>
+            <Link to={"/blogposts/create"} onClick={toggleMenu} >Create Post</Link>
+            <Link to={"/register"} onClick={toggleMenu} >Sign Up</Link>
+            <Link to={"/login"} onClick={toggleMenu} >Sign In</Link>
           </div>
 
           <img src={menuSVG} className="menu-icon" onClick={toggleMenu} />

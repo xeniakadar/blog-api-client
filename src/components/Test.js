@@ -18,9 +18,9 @@ export default function Homepage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: "barbieee",
-          email: "barb@barb.com",
-          password: "barbieee",
+          username: "logan",
+          email: "ken@ken.com",
+          password: "logan",
         }),
       });
 
@@ -45,8 +45,8 @@ export default function Homepage() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          username:"barbieee",
-          password:"barbieee"
+          username:"logan",
+          password:"logan"
         })
       });
       if (response.ok) {
@@ -74,9 +74,9 @@ export default function Homepage() {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
-          "title": "Barbies post",
-          "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-          "topic": "City"
+          "title": "Bahamas 2023",
+          "text": "The Bahamas, officially the Commonwealth of The Bahamas,[12] is an island country within the Lucayan Archipelago of the West Indies in the North Atlantic. It takes up 97% of the Lucayan Archipelago's land area and is home to 88% of the archipelago's population. The archipelagic state consists of more than 3,000 islands, cays, and islets in the Atlantic Ocean, and is located north of Cuba and northwest of the island of Hispaniola (split between the Dominican Republic and Haiti) and the Turks and Caicos Islands, southeast of the U.S. state of Florida, and east of the Florida Keys. The capital is Nassau on the island of New Providence. The Royal Bahamas Defence Force describes The Bahamas' territory as encompassing 470,000 km2 (180,000 sq mi) of ocean space.",
+          "topic": "Beach"
         })
       });
       if (response.ok) {
