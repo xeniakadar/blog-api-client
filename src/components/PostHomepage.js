@@ -11,7 +11,11 @@ export default function PostHomepage({title, text, username, timestamp, topic, b
   return (
     <div className="blogpost-container" >
       <div className='post'>
+        {topic &&
         <h2 className='title'>{topic.toUpperCase()} <span>/</span> <Link to={`${blogpostId}`}>{title.toUpperCase()}</Link> </h2>
+        }
+        {!topic &&
+        <h2><Link to={`/blogposts/${blogpostId}`}>{title.toUpperCase()}</Link></h2>}
         <p className='text'>{previewText}</p>
       </div>
       <div className='info'>

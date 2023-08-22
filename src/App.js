@@ -11,6 +11,7 @@ import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
 import TopicsList from './components/TopicsList';
 import TopicDetail from './components/TopicDetail';
+import LoginSignup from './components/LoginSignup';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route index element={<TopicsList />} />
           <Route path=':topicId' element={<TopicDetail />} />
         </Route>
+        <Route path='/authenticate' element={<LoginSignup />} />
       </Routes>
       <Test />
     </div>

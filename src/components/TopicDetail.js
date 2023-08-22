@@ -5,8 +5,11 @@ import PostHomepage from './PostHomepage';
 
 export default function TopicDetail() {
   const [blogposts, setBlogposts] = useState(null);
+  const [topic, setTopic] = useState(null);
 
   const {topicId} = useParams();
+
+
 
   useEffect(() => {
     async function getBlogpostsForTopic() {
@@ -20,6 +23,7 @@ export default function TopicDetail() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
+          setTopic(data.topic.title);
           setBlogposts(data);
         } else {
           const errorData = await response.json();
@@ -39,11 +43,18 @@ export default function TopicDetail() {
 
   return (
     <div>
-      <h1>topic</h1>
+      <h1>{topic}</h1>
 
       {blogposts.blogpostsInTopic.map(post => {
         return (
-          <h1 key={post._id}>{post._id}</h1>
+          <PostHomepage
+          key={post._id}
+          blogpostId={post._id}
+          username={post.username}
+          title={post.title}
+          text={post.text}
+          timestamp={post.timestamp}
+          />
         )
       })}
     </div>

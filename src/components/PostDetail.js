@@ -32,7 +32,6 @@ export default function PostDetail() {
   async function createComment(e) {
     e.preventDefault();
     console.log("submitting form")
-    console.log(commentText);
     try {
       const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/${blogpostId}/comments`, {
         method:"POST",

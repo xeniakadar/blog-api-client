@@ -28,8 +28,7 @@ function Navbar() {
             <Link to={"/blogposts"} onClick={toggleMenu} >Blogposts</Link>
             <Link to={"/topics"} onClick={toggleMenu} >Categories</Link>
             <Link to={"/blogposts/create"} onClick={toggleMenu} >Create Post</Link>
-            <Link to={"/register"} onClick={toggleMenu} >Sign Up</Link>
-            <Link to={"/login"} onClick={toggleMenu} >Sign In</Link>
+            <Link to={"/authenticate"} onClick={toggleMenu} >Login/Register</Link>
           </div>
 
           <img src={menuSVG} className="menu-icon" onClick={toggleMenu} />
