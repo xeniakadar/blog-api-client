@@ -9,6 +9,47 @@ export default function Homepage() {
     console.log(blogposts)
   }
 
+  async function getBlogpostsForTopic(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://blog-api-production-c42d.up.railway.app/api/topics/64dfc0cfa13896427c2aac36", {
+        method: "GET",
+        header: {
+          "Content-Type": "application/json",
+        }
+      })
+      if (response.ok) {
+        const data = await response.json();
+        console.log("blogposts for topic (success):", data)
+      } else {
+        const errorData = await response.json();
+        console.error("error getting blogposts for topic", errorData)
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
+  async function getTopics(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://blog-api-production-c42d.up.railway.app/api/topics", {
+        method: "GET",
+        header: {
+          "Content-Type": "application/json",
+        }
+      })
+      if (response.ok) {
+        const data = await response.json();
+        console.log("topics retrieved successfully:", data)
+      } else {
+        const errorData = await response.json();
+        console.error("error getting topics", errorData)
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
+
   async function createUser(e) {
     e.preventDefault();
     try {
@@ -173,6 +214,9 @@ export default function Homepage() {
       <button onClick={deleteBlogpost}>Delete post</button>
       <button onClick={createComment}>create comment</button>
       <button onClick={createTopic}>create topic</button>
+      <button onClick={getBlogpostsForTopic}>get blogposts for topics</button>
+      <button onClick={getTopics}>get topics</button>
+
     </div>
   )
 }

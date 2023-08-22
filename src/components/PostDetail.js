@@ -78,7 +78,6 @@ export default function PostDetail() {
           ))}
 
           <form onSubmit={createComment}>
-            {/* <label htmlFor="comment">Add a comment</label> */}
             <input type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
             <input className='btn-submit' type="submit" value="Add" />
           </form>

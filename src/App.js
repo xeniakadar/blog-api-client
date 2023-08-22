@@ -9,17 +9,22 @@ import Homepage from "./components/Homepage";
 import Test from "./components/Test";
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
+import TopicsList from './components/TopicsList';
+import TopicDetail from './components/TopicDetail';
 
 function App() {
   return (
     <div className="App">
-      {/* <Link to="blogpost">Link to blogpost</Link> */}
       <Navbar />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/blogposts'>
           <Route index element={<PostList />} />
           <Route path=':blogpostId' element={<PostDetail />} />
+        </Route>
+        <Route path='/topics'>
+          <Route index element={<TopicsList />} />
+          <Route path=':topicId' element={<TopicDetail />} />
         </Route>
       </Routes>
       <Test />
