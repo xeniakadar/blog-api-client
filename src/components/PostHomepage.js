@@ -4,7 +4,6 @@ import { formatTimestamp } from '../helpers/formatTimestamp';
 import createPreview from '../helpers/createPreview';
 
 
-
 export default function PostHomepage({title, text, username, timestamp, topic, blogpostId}) {
   const previewText = createPreview(text, 200);
 

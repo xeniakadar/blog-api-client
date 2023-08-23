@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Tab } from '@headlessui/react'
+import { Tab } from '@headlessui/react';
+import { UserContext } from '../contexts/UserContext';
 
 export default function LoginSignup() {
   const [registerUsername, setRegisterUsername] = useState("");
@@ -11,7 +12,10 @@ export default function LoginSignup() {
   const [loginPassword, setLoginPassword] = useState("");
 
   const navigate = useNavigate();
-
+  const {user, setUser } = useContext(UserContext);
+  useEffect(() => {
+    console.log("useContext user info:", user);
+  }, [user]);
   const registerUser = async (e) => {
     e.preventDefault();
     try {
@@ -56,8 +60,10 @@ export default function LoginSignup() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        console.log("local storage stuff:", localStorage);
-        console.log("user logged in", data)
+        localStorage.setItem("username", data.body.username);
+        setUser(data);
+        console.log("user logged in", data);
+        navigate("/");
       } else {
         const errorData = await response.json();
         console.error("Error logging in user:", errorData);
@@ -84,12 +90,24 @@ export default function LoginSignup() {
           <Tab.Panel >
             <h1>Form for signup</h1>
             <form onSubmit={registerUser}>
-              <input type="text" id="username" placeholder='Username' value={registerUsername} onChange={e => setRegisterUsername(e.target.value)} />
+              <label htmlFor="register-username" >Username</label>
+              <input type="text" id="register-username" placeholder='Username' value={registerUsername} onChange={e => setRegisterUsername(e.target.value)} />
+              <label htmlFor="register-email" >email</label>
+              <input type="text" id="register-email" placeholder='Email' value={registerEmail} onChange={e => setRegisterEmail(e.target.value)} />
+              <label htmlFor="register-password" >password</label>
+              <input type="password" id="register-password" placeholder='password' value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} />
+              <input className='btn-submit' type="submit" value="Create Account" />
             </form>
-
           </Tab.Panel>
           <Tab.Panel >
             <h1>Form for login</h1>
+            <form onSubmit={loginUser}>
+              <label htmlFor="login-username">Username</label>
+              <input type="text" id="login-username" placeholder='Username' value={loginUsername} onChange={e => setLoginUsername(e.target.value)} />
+              <label htmlFor="login-password" >password</label>
+              <input type="password" id="login-password" placeholder='password' value={loginPassword} onChange={e => setLoginPassword(e.target.value)} />
+              <input className='btn-submit' type="submit" value="Log In" />
+            </form>
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
