@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { formatTimestamp } from '../helpers/formatTimestamp';
+import { Link } from 'react-router-dom';
 
 export default function PostDetail() {
 
@@ -62,7 +63,7 @@ export default function PostDetail() {
 
   return (
     <div className='blogpost-detail-container'>
-      <h1 className='topic'>{blogpost.topic.title.toUpperCase()} <span>/ {blogpost.title.toUpperCase()}</span> </h1>
+      <h1 className='topic'> <Link to={`/topics/${blogpost.topic._id}`}>{blogpost.topic.title.toUpperCase()}</Link> <span>/ {blogpost.title.toUpperCase()}</span> </h1>
       <p className='text'>{blogpost.text}</p>
       <p className='info'>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
 

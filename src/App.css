@@ -160,6 +160,14 @@ ul {
   letter-spacing: 1px;
 }
 
+.blogpost-detail-container a {
+  text-decoration: none;
+  color: #333;
+}
+.blogpost-detail-container a:hover {
+  text-decoration: underline;
+}
+
 .post .text {
   font-weight: 300;
   color: #6c6c6c;
