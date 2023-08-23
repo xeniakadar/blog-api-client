@@ -80,13 +80,24 @@ export default function LoginSignup() {
       <Tab.Group>
         <Tab.List>
           <Tab as={Fragment} >
-            <button>Signup</button>
-          </Tab>
-          <Tab as={Fragment} >
             <button>Login</button>
           </Tab>
+          <Tab as={Fragment} >
+            <button>Signup</button>
+          </Tab>
+
         </Tab.List>
         <Tab.Panels>
+          <Tab.Panel >
+            <h1>Form for login</h1>
+            <form onSubmit={loginUser}>
+              <label htmlFor="login-username">Username</label>
+              <input type="text" id="login-username" placeholder='Username' value={loginUsername} onChange={e => setLoginUsername(e.target.value)} />
+              <label htmlFor="login-password" >password</label>
+              <input type="password" id="login-password" placeholder='password' value={loginPassword} onChange={e => setLoginPassword(e.target.value)} />
+              <input className='btn-submit' type="submit" value="Log In" />
+            </form>
+          </Tab.Panel>
           <Tab.Panel >
             <h1>Form for signup</h1>
             <form onSubmit={registerUser}>
@@ -97,16 +108,6 @@ export default function LoginSignup() {
               <label htmlFor="register-password" >password</label>
               <input type="password" id="register-password" placeholder='password' value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} />
               <input className='btn-submit' type="submit" value="Create Account" />
-            </form>
-          </Tab.Panel>
-          <Tab.Panel >
-            <h1>Form for login</h1>
-            <form onSubmit={loginUser}>
-              <label htmlFor="login-username">Username</label>
-              <input type="text" id="login-username" placeholder='Username' value={loginUsername} onChange={e => setLoginUsername(e.target.value)} />
-              <label htmlFor="login-password" >password</label>
-              <input type="password" id="login-password" placeholder='password' value={loginPassword} onChange={e => setLoginPassword(e.target.value)} />
-              <input className='btn-submit' type="submit" value="Log In" />
             </form>
           </Tab.Panel>
         </Tab.Panels>
