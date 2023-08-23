@@ -13,6 +13,7 @@ import TopicsList from './components/TopicsList';
 import TopicDetail from './components/TopicDetail';
 import LoginSignup from './components/LoginSignup';
 import { UserContext } from './contexts/UserContext';
+import PostCreate from './components/PostCreate';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route index element={<TopicsList />} />
             <Route path=':topicId' element={<TopicDetail />} />
           </Route>
+          <Route path='/newpost' element={<PostCreate />} />
           <Route path='/authenticate' element={<LoginSignup />} />
         </Routes>
         <Test />
