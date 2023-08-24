@@ -2,6 +2,11 @@ import React from 'react';
 
 export default function PostCreate() {
   return (
-    <h1>Create Post</h1>
+    <div>
+      <h1>Create Post</h1>
+      <form>
+
+      </form>
+    </div>
   )
 }
