@@ -10,6 +10,8 @@ export default function LoginSignup() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [error, setError] = useState("");
+
 
   const navigate = useNavigate();
   const {user, setUser } = useContext(UserContext);
@@ -62,11 +64,13 @@ export default function LoginSignup() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.body.username);
         setUser(data);
+        setError("");
         console.log("user logged in", data);
         navigate("/");
       } else {
         const errorData = await response.json();
         console.error("Error logging in user:", errorData);
+        setError( "Wrong password or username");
       }
 
     } catch (error) {
@@ -91,6 +95,7 @@ export default function LoginSignup() {
           <Tab.Panel >
             <h1>Form for login</h1>
             <form onSubmit={loginUser}>
+              {error && <h1>{error}</h1>}
               <label htmlFor="login-username">Username</label>
               <input type="text" id="login-username" placeholder='Username' value={loginUsername} onChange={e => setLoginUsername(e.target.value)} />
               <label htmlFor="login-password" >password</label>

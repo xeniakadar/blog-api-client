@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import menuSVG from './images/menu.svg';
 import closeSVG from './images/close.svg';
 
@@ -10,6 +10,12 @@ function Navbar() {
     setMenuVisible(!menuVisible);
   };
 
+
+  const logoutUser = () => {
+    localStorage.setItem("token", "");
+    localStorage.setItem("username", "");
+    window.location.reload();
+  }
 
   return (
     <nav>
@@ -26,7 +32,10 @@ function Navbar() {
             <Link to={"/blogposts"} onClick={toggleMenu} >Blogposts</Link>
             <Link to={"/topics"} onClick={toggleMenu} >Categories</Link>
             <Link to={"/newpost"} onClick={toggleMenu} >Create Post</Link>
-            <Link to={"/authenticate"} onClick={toggleMenu} >Login/Register</Link>
+            {localStorage.getItem("token") !== "" &&  <Link to={"/"} onClick={logoutUser} >Log out</Link>}
+            {localStorage.getItem("token") === "" &&
+            <Link to={"/authenticate"} onClick={toggleMenu}>Register</Link>
+            }
           </div>
 
           <img src={menuSVG} className="menu-icon" onClick={toggleMenu} />
