@@ -15,9 +15,11 @@ export default function LoginSignup() {
 
   const navigate = useNavigate();
   const {user, setUser } = useContext(UserContext);
+
   useEffect(() => {
     console.log("useContext user info:", user);
   }, [user]);
+
   const registerUser = async (e) => {
     e.preventDefault();
     try {
@@ -80,10 +82,11 @@ export default function LoginSignup() {
 
 
   return (
-    <div>
+    <div className='w-full max-w-md px-2 py-16 sm:px-0'>
       <Tab.Group>
-        <Tab.List>
-          <Tab as={Fragment} >
+        <Tab.List className="flex space-x-1 rounded-xl p-1">
+          <Tab className="w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
+                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2" as={Fragment} >
             <button>Login</button>
           </Tab>
           <Tab as={Fragment} >
