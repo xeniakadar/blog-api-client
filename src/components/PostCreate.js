@@ -72,9 +72,9 @@ export default function PostCreate() {
         <input type="text" id="text" placeholder='Email' value={text} onChange={e => setText(e.target.value)} />
         <label htmlFor="topic">Topic</label>
         <select name="topic" id="topic">
-          {topics.map((topic) => {
-            <option value={topic}>{topic}</option>
-          })}
+          {topics.map((topic) => (
+            <option value={topic.title}>{topic.title}</option>
+          ))}
         </select>
         <input className='btn-submit' type="submit" value="Create Post" />
 
