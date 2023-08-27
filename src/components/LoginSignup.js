@@ -65,6 +65,7 @@ export default function LoginSignup() {
         const data = await response.json();
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.body.username);
+        localStorage.setItem("userId", data.body._id);
         setUser(data);
         setError("");
         console.log("user logged in", data);
