@@ -14,6 +14,7 @@ import TopicDetail from './components/TopicDetail';
 import LoginSignup from './components/LoginSignup';
 import { UserContext } from './contexts/UserContext';
 import PostCreate from './components/PostCreate';
+import "./App.css"
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
           <Route path='/newpost' element={<PostCreate />} />
           <Route path='/authenticate' element={<LoginSignup />} />
         </Routes>
-        <Test />
+        {/* <Test /> */}
       </div>
     </UserContext.Provider>
   );

@@ -1,18 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@200;300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@200;300;700&display=swap'); */
 
+body, html {
+  padding: 0;
+  margin: 0;
+}
 
-body {
+/* body {
   font-family: 'Roboto', sans-serif;
   background-color: #dee3e3;
   height: 100%;
 }
 
-/* navbar */
+ navbar
 
 nav {
   padding: 10px;
@@ -91,7 +95,7 @@ ul {
   }
 }
 
-/* blogpost list */
+ blogpost list
 
 .posts-container {
   margin: 1em;
@@ -175,7 +179,7 @@ ul {
 .post .text {
   font-weight: 300;
   color: #6c6c6c;
-  /* letter-spacing: 1px; */
+   letter-spacing: 1px;
 }
 
 .info {
@@ -195,7 +199,7 @@ ul {
 }
 
 
-/* blogpost detail */
+ blogpost detail
 
 .blogpost-detail-container {
   margin: 2em;
@@ -207,16 +211,16 @@ ul {
   background-color: white;
   padding: 20px;
   border-radius: 25px;
-  /* margin: 10px; */
+   margin: 10px;
 }
 
 .blogpost-detail-container .text {
   font-size: 1.1em;
   font-weight: 300;
-  /* letter-spacing: 0.3px; */
+   letter-spacing: 0.3px;
 }
 
-/* comments container */
+ comments container
 
 .comment-details,
 .comments-container,
@@ -283,4 +287,4 @@ form {
   padding: 10px;
   border-radius: 25px;
   border: none;
-}
+} */
