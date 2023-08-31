@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BeachImg from './images/Beach.jpeg';
+import CityImg from './images/City.jpeg';
+import DesertImg from './images/Desert.jpeg';
+import MountainsImg from './images/Mountains.jpeg';
+import TropicsImg from './images/Tropics.jpeg';
+import WinterImg from './images/Winter.jpeg';
 
 export default function Topics() {
 
@@ -24,16 +30,29 @@ export default function Topics() {
     fetchTopics();
   }, []);
 
+  const imageMap = {
+    'Beach': BeachImg,
+    'City': CityImg,
+    'Desert': DesertImg,
+    'Mountains': MountainsImg,
+    'Tropics': TropicsImg,
+    'Winter': WinterImg
+  }
+
   if (!topics) {
     return <p>Loading ... </p>
   }
 
   return (
     <div className='topics-container'>
-      <h1>Topics</h1>
+      <h1>Destinations</h1>
       {topics.map((topic) => {
+        const topicImage = imageMap[topic.title];
         return (
-          <h2 key={topic._id}> <Link to={`${topic._id}`}>{topic.title}</Link> </h2>
+          <div key={topic._id}>
+            <h2> <Link to={`${topic._id}`}>{topic.title}</Link> </h2>
+            <img src={topicImage} alt={`${topic.title}`} />
+          </div>
         )
       })}
     </div>

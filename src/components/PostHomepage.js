@@ -8,7 +8,7 @@ export default function PostHomepage({title, text, username, timestamp, topic, b
   const previewText = createPreview(text, 200);
 
   return (
-    <div className="blogpost-container" >
+    <div className="blogpost-container -z-50" >
       <div className='post'>
         {topic &&
         <h2 className='title'>{topic.toUpperCase()} <span>/</span> <Link to={`${blogpostId}`}>{title.toUpperCase()}</Link> </h2>
