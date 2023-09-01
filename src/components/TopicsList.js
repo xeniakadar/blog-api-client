@@ -6,7 +6,6 @@ import DesertImg from './images/Desert.jpeg';
 import MountainsImg from './images/Mountains.jpeg';
 import TropicsImg from './images/Tropics.jpeg';
 import WinterImg from './images/Winter.jpeg';
-import maskSvg from './images/mask.svg';
 
 export default function Topics() {
 
@@ -60,10 +59,3 @@ export default function Topics() {
     </div>
   )
 }
-
-// <div key={topic._id}>
-          //    <Link to={`${topic._id}`}>
-          //     <h2>{topic.title}</h2>
-          //     <img src={topicImage} className={`rounded-3xl`} alt={`${topic.title}`} />
-          //    </Link>
-          // </div>
