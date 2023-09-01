@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PostHomepage from './PostHomepage';
+import BeachImg from './images/Beach.jpeg';
+import CityImg from './images/City.jpeg';
+import DesertImg from './images/Desert.jpeg';
+import MountainsImg from './images/Mountains.jpeg';
+import TropicsImg from './images/Tropics.jpeg';
+import WinterImg from './images/Winter.jpeg';
 
 export default function PostList() {
 
@@ -23,6 +29,15 @@ export default function PostList() {
 
     fetchBlogposts();
   }, []);
+
+  const imageMap = {
+    'Beach': BeachImg,
+    'City': CityImg,
+    'Desert': DesertImg,
+    'Mountains': MountainsImg,
+    'Tropics': TropicsImg,
+    'Winter': WinterImg
+  }
 
 
   return (

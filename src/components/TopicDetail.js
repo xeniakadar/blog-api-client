@@ -1,7 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { formatTimestamp } from '../helpers/formatTimestamp';
 import PostHomepage from './PostHomepage';
+import BeachImg from './images/Beach.jpeg';
+import CityImg from './images/City.jpeg';
+import DesertImg from './images/Desert.jpeg';
+import MountainsImg from './images/Mountains.jpeg';
+import TropicsImg from './images/Tropics.jpeg';
+import WinterImg from './images/Winter.jpeg';
 
 export default function TopicDetail() {
   const [blogposts, setBlogposts] = useState(null);
@@ -9,7 +14,14 @@ export default function TopicDetail() {
 
   const {topicId} = useParams();
 
-
+  const imageMap = {
+    'Beach': BeachImg,
+    'City': CityImg,
+    'Desert': DesertImg,
+    'Mountains': MountainsImg,
+    'Tropics': TropicsImg,
+    'Winter': WinterImg
+  }
 
   useEffect(() => {
     async function getBlogpostsForTopic() {
@@ -42,8 +54,12 @@ export default function TopicDetail() {
   }
 
   return (
-    <div>
-      <h1>{topic}</h1>
+    <div className='p-2 m-2'>
+      {topic?
+      <div className="relative bg-no-repeat bg-cover rounded-3xl my-3 inverted-scoop -z-10 w-full md:w-9/10 lg:w-9/10 xl:w-88  mx-auto" style={{ backgroundImage: `url(${imageMap[topic]})`, height: '450px' }}>
+        <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic}</h2>
+      </div>
+       : null}
 
       {blogposts.blogpostsInTopic.map(post => {
         return (

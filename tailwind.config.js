@@ -8,7 +8,12 @@ module.exports = {
       lg: '976px',
       xl: '1440px',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'primary': ['Roboto'],
+        'secondary' : ['Urbanist']
+      }
+    },
   },
   plugins: [],
 }

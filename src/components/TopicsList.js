@@ -51,7 +51,7 @@ export default function Topics() {
             return (
               <Link key={topic._id} to={`${topic._id}`} className="">
                 <div className="relative bg-no-repeat bg-cover rounded-3xl my-3 inverted-scoop -z-10 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ backgroundImage: `url(${topicImage})`, height: '450px' }}>
-                  <h2 className="topic--bg font-sans absolute bottom-0 left-0 z-10 p-2">{topic.title}</h2>
+                  <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic.title}</h2>
                 </div>
               </Link>
             )
