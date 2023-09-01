@@ -1,0 +1,10 @@
+<svg width="350" height="450" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main rectangle for the background -->
+    <rect x="0" y="40" width="350" height="410" fill="#522d5b" />
+
+    <!-- Semi-circle on the top-left corner -->
+    <circle cx="0" cy="40" r="40" fill="#522d5b" />
+
+    <!-- Rectangle to fill the space between the semi-circle and the main rectangle -->
+    <rect x="0" y="0" width="40" height="20" fill="#522d5b" />
+</svg>

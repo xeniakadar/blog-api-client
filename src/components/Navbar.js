@@ -25,7 +25,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="p-2 m-2">
+    <nav className="p-2 m-2 z-70 relative">
        <ul className="flex justify-between items-center list-none m-0 p-0">
         <li>
             <Link to={"/"} className="home-btn">
