@@ -3,6 +3,7 @@ import "../App.css"
 import { NavLink } from 'react-router-dom';
 import createPreview from '../helpers/createPreview';
 import { formatTimestamp } from '../helpers/formatTimestamp';
+import { useParams } from 'react-router-dom';
 import BeachImg from './images/Beach.jpeg';
 import CityImg from './images/City.jpeg';
 import DesertImg from './images/Desert.jpeg';
@@ -45,9 +46,11 @@ export default function Homepage() {
     'Winter': WinterImg
   }
 
-  let previewText = "";
+  let previewTextFirst = "";
+  let latestBlogpostId = "";
   if (blogposts && blogposts.length > 0) {
-    previewText = createPreview(blogposts[0].text, 120);
+    previewTextFirst = createPreview(blogposts[0].text, 120);
+    latestBlogpostId = blogposts[0]._id
   }
 
   return (
@@ -56,11 +59,13 @@ export default function Homepage() {
       {!displayName &&<h1 className={`homepage`}>Welcome to the homepage!</h1> }
       <div className="grid md:grid-cols-2 gap-4">
         <div className=" transition-transform duration-500 ease-in-out hover:scale-105 md:col-span-1 md:row-span-2 p-4 bg-cover rounded-3xl my-3 " style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${imageMap[blogposts[0].topic.title]})`, height: '450px' } : {}}>
-          <h1 className='bg-white bg-opacity-50 font-secondary font-extrabold w-max text-xl rounded-2xl p-3 mb-2'>Check out the latest blogpost</h1>
+          <h1 className='bg-white bg-opacity-50 font-secondary font-extrabold w-max text-xl rounded-2xl p-3 mb-2'>Check out the latest blogposts</h1>
           {blogposts && blogposts.length > 0 && (
             <div className='bg-white rounded-2xl p-3'>
-              <h1 className='pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-bold'>{blogposts[0].title}</h1>
-              <p className='font-primary font-light'>{previewText}</p>
+              <NavLink to={`/blogposts/${latestBlogpostId}`}>
+                <h1 className='pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-bold'>{blogposts[0].title}</h1>
+              </NavLink>
+              <p className='font-primary font-light'>{previewTextFirst}</p>
               <div className='info text-sky-900 pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
                 <p>{blogposts[0].username} - <span>{formatTimestamp(blogposts[0].timestamp)}</span></p>
               </div>
