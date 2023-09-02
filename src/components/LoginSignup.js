@@ -117,7 +117,7 @@ export default function LoginSignup() {
           <Tab.Panel >
             <form onSubmit={loginUser} className='flex flex-col mt-3'>
               {error && <h1>{error}</h1>}
-              <div className='relative border p-2 mt-2' >
+              <div className='relative border p-2 my-3' >
                 <label htmlFor="login-username" className='absolute top-0 left-2 bg-white px-1 text-xs md:text-base -translate-y-2/4'>Username</label>
                 <input type="text" className='w-full focus:outline-none' id="login-username" placeholder='Username' value={loginUsername} onChange={e => setLoginUsername(e.target.value)} />
               </div>
@@ -130,11 +130,11 @@ export default function LoginSignup() {
           </Tab.Panel>
           <Tab.Panel >
             <form onSubmit={registerUser} className='flex flex-col mt-3'>
-              <div className='relative border p-2 mt-2'>
+              <div className='relative border p-2 my-3'>
                 <label htmlFor="register-username"className='absolute top-0 left-2 bg-white px-1 text-xs md:text-base -translate-y-2/4' >Username</label>
                 <input type="text" className='w-full focus:outline-none' id="register-username" placeholder='Username' value={registerUsername} onChange={e => setRegisterUsername(e.target.value)} />
               </div>
-              <div className='relative border p-2 mt-2'>
+              <div className='relative border p-2 my-3'>
                 <label htmlFor="register-email"className='absolute top-0 left-2 bg-white px-1 text-xs md:text-base -translate-y-2/4' >Email</label>
                 <input type="text" className='w-full focus:outline-none' id="register-email" placeholder='Email' value={registerEmail} onChange={e => setRegisterEmail(e.target.value)} />
               </div>
