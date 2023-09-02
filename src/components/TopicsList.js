@@ -50,14 +50,10 @@ export default function Topics() {
             const topicImage = imageMap[topic.title];
             return (
               <Link key={topic._id} to={`${topic._id}`} className="">
-                {/* <div className="zoom-effect-container relative bg-no-repeat bg-cover rounded-3xl my-3 inverted-scoop -z-10 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ backgroundImage: `url(${topicImage})`, height: '450px' }}>
-                  <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic.title}</h2>
-                </div> */}
                 <div className="zoom-effect-container relative overflow-hidden rounded-3xl my-3 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ height: '450px' }}>
-    <div className="bg-image-container absolute inset-0 bg-no-repeat bg-cover transition-transform duration-300 transform hover:scale-105" style={{ backgroundImage: `url(${topicImage})` }}></div>
-    <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic.title}</h2>
-</div>
-
+                  <div className="bg-image-container absolute inset-0 bg-no-repeat bg-cover transition-transform duration-300 transform hover:scale-105" style={{ backgroundImage: `url(${topicImage})` }}></div>
+                  <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic.title}</h2>
+                </div>
               </Link>
             )
         })}

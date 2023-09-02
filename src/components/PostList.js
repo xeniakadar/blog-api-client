@@ -41,7 +41,7 @@ export default function PostList() {
 
 
   return (
-    <div className={`posts-container -z-0`}>
+    <div className={`posts-container -z-0 p-2 m-2`}>
         <h1 >Bloposts</h1>
         {blogposts.map((post) => (
           <PostHomepage
