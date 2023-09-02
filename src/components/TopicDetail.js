@@ -12,7 +12,6 @@ export default function TopicDetail() {
   const [blogposts, setBlogposts] = useState(null);
   const [topic, setTopic] = useState(null);
 
-
   const {topicId} = useParams();
 
   const imageMap = {
