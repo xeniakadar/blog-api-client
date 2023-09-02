@@ -114,40 +114,45 @@ export default function PostDetail() {
   }
 
   return (
-    <div className='blogpost-detail-container'>
+    <div className='blogpost-detail-container w-screen h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto bg-sky-100 mb-3 p-3'>
+
       {blogpostDeleted? <h1>Post Deleted</h1> :
       <>
-        <h1 className='topic'> <Link to={`/topics/${blogpost.topic._id}`}>{blogpost.topic.title.toUpperCase()}</Link> <span>/ {blogpost.title.toUpperCase()}</span> </h1>
-        <p className='text'>{blogpost.text}</p>
-        <p className='info'>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
+        <h1 className='topic bg-sky-950 text-sky-100 w-max py-1 px-3 rounded-2xl md:text-xl font-secondary font-bold'>
+          <Link to={`/topics/${blogpost.topic._id}`} className='hover:text-sky-500'>{blogpost.topic.title.toUpperCase()}</Link>
+          <span className='text-white'> / {blogpost.title.toUpperCase()}</span>
+        </h1>
+        <p className='text font-primary md:text-lg mb-2 mt-2 pl-0.5'>{blogpost.text}</p>
+        <p className='info text-sky-900 pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold'>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
 
         {blogpost.userid === localStorage.getItem("userId") &&
           <div className='manage-post'>
-            <h1>manage post</h1>
-            <button>Update Post</button>
-            <button onClick={deleteBlogpost}>Delete Post</button>
+            <button className=' border-white border-2 bg-sky-900 text-white rounded-xl p-2 mr-2 hover:bg-white hover:text-sky-900 ease-in-out duration-300'>Update Post</button>
+            <button className='border-white border-2  bg-sky-900 text-white rounded-xl p-2 hover:bg-red-700 ease-in-out duration-300' onClick={deleteBlogpost}>Delete Post</button>
           </div>
         }
-        <div className='comments-container'>
+        <div className='comments-container bg-sky-200 rounded-2xl px-3 py-2 mt-10'>
         {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments</h3>}
 
           {blogpost.comments.map(comment => (
             <div className='comment-details' key={comment.id || comment._id}>
               {deletedComments.includes(comment._id)? <p className='comment-text'>Comment successfully deleted</p> :
-              <>
-                <p className='comment-info'>{comment.username} - <span>{formatTimestamp(comment.timestamp)}</span></p>
-                <p className='comment-text'>{comment.text}</p>
+              <div className='bg-white rounded-xl my-2 p-2 flex justify-between items-start'>
+                <div>
+                  <p className='comment-info'> <span className='font-bold'>{comment.username}</span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
+                  <p className='comment-text'>{comment.text}</p>
+                </div>
                 {(comment.userid === localStorage.getItem("userId") || blogpost.userid === localStorage.getItem("userId")) &&
-                  <button onClick={() => deleteComment(comment._id)}>Delete comment</button>
+                  <button className=' text-red-700 font-extrabold' onClick={() => deleteComment(comment._id)}>Delete</button>
                 }
-              </>
+              </div>
               }
             </div>
           ))}
 
           <form onSubmit={createComment}>
-            <input type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
-            <input className='btn-submit' type="submit" value="Add" />
+            <input className='rounded-xl px-2 py-1' type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
+            <input className='btn-submit  border-white border-2 bg-sky-900 text-white rounded-xl px-2 py-1 ml-2 hover:bg-white hover:text-sky-900 ease-in-out duration-300' type="submit" value="Add comment" />
           </form>
         </div>
       </>

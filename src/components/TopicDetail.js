@@ -12,6 +12,7 @@ export default function TopicDetail() {
   const [blogposts, setBlogposts] = useState(null);
   const [topic, setTopic] = useState(null);
 
+
   const {topicId} = useParams();
 
   const imageMap = {
@@ -36,7 +37,7 @@ export default function TopicDetail() {
           const data = await response.json();
           console.log(data);
           setTopic(data.topic.title);
-          setBlogposts(data);
+          setBlogposts(data.decodedBlogpost);
         } else {
           const errorData = await response.json();
           console.error("error getting blogposts for topic", errorData)
@@ -61,7 +62,7 @@ export default function TopicDetail() {
       </div>
        : null}
 
-      {blogposts.blogpostsInTopic.map(post => {
+      {blogposts.map(post => {
         return (
           <PostHomepage
           key={post._id}

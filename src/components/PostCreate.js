@@ -74,7 +74,7 @@ export default function PostCreate() {
         <label htmlFor="text">Text Title</label>
         <input type="text" id="text" placeholder='your post' value={text} onChange={e => setText(e.target.value)} />
         <label htmlFor="topic">Topic</label>
-        <select name="topic" id="topic">
+        <select name="topic" id="topic" value={selectedTopic} onChange={e => setSelectedTopic(e.target.value)}>
           {topics.map((topic) => (
             <option key={topic._id} value={topic._id}>{topic.title}</option>
           ))}
