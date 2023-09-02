@@ -49,6 +49,7 @@ body, html {
   margin-left: auto;
   margin-right: auto;
 }
+
 .bg-image-container {
   transition: transform 0.7s ease;
 }

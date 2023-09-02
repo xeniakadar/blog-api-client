@@ -39,6 +39,10 @@ export default function PostList() {
     'Winter': WinterImg
   }
 
+  if (!blogposts) {
+    <h1>Loading</h1>
+  }
+
 
   return (
     <div className={`posts-container -z-0 p-2 m-2`}>
