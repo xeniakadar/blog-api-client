@@ -44,11 +44,18 @@ body, html {
 }
 
 .topic--card{
-  width: 90%; /* Adjust this percentage based on how much of the screen you want it to take up */
-  max-width: 90%; /* Same as above */
-  margin-left: auto; /* These two lines center the div on the screen */
+  width: 90%;
+  max-width: 90%;
+  margin-left: auto;
   margin-right: auto;
 }
+.bg-image-container {
+  transition: transform 0.7s ease;
+}
+.bg-image-container:hover {
+  transform: scale(1.05);
+}
+
 
 
 /* body {
