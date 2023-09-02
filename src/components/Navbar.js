@@ -32,11 +32,11 @@ function Navbar() {
                 <img src={tripImg} className="h-10 md:h-12" alt="home" />
             </Link>
         </li>
-
-        <li className="relative w-full md:flex md:justify-end">
-          <button className={`fixed top-2 right-2 w-24 text-center font-bold md:hidden z-50 border-2 rounded-2xl border-gray-950 p-2 ${menuVisible? "bg-black text-white" : ""}`} onClick={toggleMenu}>
+        <button className={`absolute top-2 right-2 w-24 text-center font-bold md:hidden z-50 border-2 rounded-2xl border-gray-950 p-2 ${menuVisible? "bg-black text-white" : ""}`} onClick={toggleMenu}>
             {menuVisible ? "Close" : "Menu"}
           </button>
+
+        <li className="relative w-full md:flex md:justify-end">
           <div className={`navbar--right ${menuVisible ? 'absolute md:relative mt-8 flex top-full -right-2 md:right-0 z-60' : 'hidden'} md:flex flex-col w-full justify-end items-end bg-black md:bg-black/[.06] md:rounded-2xl z-20 leading-16 md:flex-row md:w-fit md:h-auto rounded-3xl`}>
             <Link to={"/blogposts"} onClick={handleLinkClick} className="text-white hover:underline border-b-2 border-b-white   md:border-none w-full md:w-auto p-4 text-3xl  md:text-2xl  border-gray-700  md:text-black">Blogposts</Link>
             <Link to={"/topics"} onClick={handleLinkClick} className="text-white hover:underline border-b-2 border-b-white  md:border-none w-full md:w-auto p-4 text-3xl  md:text-2xl  border-gray-700  md:text-black">Destinations</Link>
