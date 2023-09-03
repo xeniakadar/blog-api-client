@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import tripImg from './images/triptrek.png';
+import darkTripImg from './images/triptrek-dark.png';
 import DarkModeToggle from './DarkModeToggle';
 
 import "../App.css"
 
 function Navbar() {
   const [menuVisible, setMenuVisible] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      setTheme(localStorage.getItem('theme'));
+    };
+
+    window.addEventListener('storage', handleThemeChange);
+
+    return () => {
+      window.removeEventListener('storage', handleThemeChange);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -25,11 +39,13 @@ function Navbar() {
   }
 
   return (
-    <nav className="p-2 m-2 z-70 relative">
+    <nav className="p-2 z-70 relative">
        <ul className="flex justify-between items-center list-none m-0 p-0">
         <li>
             <Link to={"/"} className="home-btn">
-                <img src={tripImg} className="h-10 md:h-12" alt="home" />
+                {theme === "light"
+                ? <img src={tripImg} className="h-10 md:h-12" alt="home" />
+                : <img src={darkTripImg} className="h-10 md:h-12" alt="home" />}
             </Link>
         </li>
         <button className={`absolute top-2 right-2 w-24 text-center font-bold md:hidden z-50 border-2 rounded-2xl border-gray-950 p-2 ${menuVisible? "bg-black text-white" : ""}`} onClick={toggleMenu}>

@@ -24,10 +24,10 @@ export default function DarkModeToggle() {
 
   return (
     <DarkModeSwitch
-    style={{ marginBottom: '0.6em', marginLeft: '0.5em' }}
+    style={{ marginBottom: '0.8em', marginLeft: '1em' }}
     checked={isDark}
     onChange={toggleDarkMode}
-    size={40}
+    size={35}
   />
   );
 }

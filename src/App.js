@@ -15,6 +15,7 @@ import LoginSignup from './components/LoginSignup';
 import { UserContext } from './contexts/UserContext';
 import PostCreate from './components/PostCreate';
 import PostUpdate from './components/PostUpdate';
+import {ThemeContext} from './contexts/ThemeContext';
 import "./App.css"
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <UserContext.Provider value={{user, setUser}} >
-      <div className="App">
+      <div className="App dark:bg-sky-950">
         <Navbar />
         <Routes>
           <Route path='/' element={<Homepage />} />
