@@ -10,6 +10,23 @@ export default function PostDetail() {
   const [blogpostDeleted, setBlogpostDeleted] = useState(false);
   const [deletedComments, setDeletedComments] = useState([]);
 
+  const imageMap = {
+    'Beach': { color: '#8ecae6' },
+    'City': {  color: '#edede9' },
+    'Desert': { color: '#ead2ac' },
+    'Mountains': { color: '#dde5b6' },
+    'Tropics': { color: '#ffc971' },
+    'Winter': { color: '#caf0f8' }
+  };
+  const commentMap = {
+    'Beach': { color: '#2b93c3' },
+    'City': {  color: '#a1a18c' },
+    'Desert': { color: '#cc9337' },
+    'Mountains': { color: '#aabe49' },
+    'Tropics': { color: '#ec9200' },
+    'Winter': { color: '#3bc7e5' }
+  };
+
   const {blogpostId} = useParams();
   const navigate = useNavigate();
 
@@ -114,7 +131,7 @@ export default function PostDetail() {
   }
 
   return (
-    <div className='blogpost-detail-container w-screen h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto bg-sky-100 mb-3 p-3'>
+    <div className='blogpost-detail-container w-screen h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3' style={blogpost ? { backgroundColor: imageMap[blogpost.topic.title].color } : {}}>
 
       {blogpostDeleted? <h1>Post Deleted</h1> :
       <>
@@ -131,7 +148,7 @@ export default function PostDetail() {
             <button className='border-white border-2  bg-sky-900 text-white rounded-xl p-2 hover:bg-red-700 ease-in-out duration-300' onClick={deleteBlogpost}>Delete Post</button>
           </div>
         }
-        <div className='comments-container bg-sky-200 rounded-2xl px-3 py-2 mt-10'>
+        <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: commentMap[blogpost.topic.title].color } : {}}>
         {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments</h3>}
 
           {blogpost.comments.map(comment => (

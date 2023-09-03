@@ -15,13 +15,13 @@ export default function TopicDetail() {
   const {topicId} = useParams();
 
   const imageMap = {
-    'Beach': BeachImg,
-    'City': CityImg,
-    'Desert': DesertImg,
-    'Mountains': MountainsImg,
-    'Tropics': TropicsImg,
-    'Winter': WinterImg
-  }
+    'Beach': { image: BeachImg, color: '#8ecae6' },
+    'City': { image: CityImg, color: '#edede9' },
+    'Desert': { image: DesertImg, color: '#ead2ac' },
+    'Mountains': { image: MountainsImg, color: '#dde5b6' },
+    'Tropics': { image: TropicsImg, color: '#ffc971' },
+    'Winter': { image: WinterImg, color: '#caf0f8' }
+  };
 
   useEffect(() => {
     async function getBlogpostsForTopic() {
@@ -56,7 +56,7 @@ export default function TopicDetail() {
   return (
     <div className='p-2 m-2'>
       {topic?
-      <div className="relative bg-no-repeat bg-cover rounded-3xl my-3 -z-10 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ backgroundImage: `url(${imageMap[topic]})`, height: '450px' }}>
+      <div className="relative bg-no-repeat bg-cover rounded-3xl my-3 -z-10 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ backgroundImage: `url(${imageMap[topic].image})`, height: '450px' }}>
         <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic}</h2>
       </div>
        : null}
@@ -70,6 +70,7 @@ export default function TopicDetail() {
           title={post.title}
           text={post.text}
           timestamp={post.timestamp}
+          topic={topic}
           />
         )
       })}
