@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 export default function PostUpdate() {
   const [topics, setTopics] = useState([]);
-  const [selectedTopic, setSelectedTopic] = useState(topics[0]);
+  const [selectedTopic, setSelectedTopic] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
 
@@ -20,7 +20,6 @@ export default function PostUpdate() {
 
         if (response.ok) {
           setTopics(data);
-          setSelectedTopic(data[0]?.title || null)
         } else {
           console.error("failed to fetch topics", data);
         }
@@ -37,7 +36,7 @@ export default function PostUpdate() {
         if (response.ok) {
           setTitle(data.title);
           setText(data.text);
-          setSelectedTopic(data.topic);
+          setSelectedTopic(data.topic._id);
         } else {
           console.error("failed to fetch blogpost", data);
         }
