@@ -144,7 +144,7 @@ export default function PostDetail() {
 
         {blogpost.userid === localStorage.getItem("userId") &&
           <div className='manage-post'>
-            <button className=' border-white border-2  text-white rounded-xl p-2 mr-2 hover:border-sky-900 hover:text-sky-900 ease-in-out duration-300' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}} >Update Post</button>
+            <Link to={`/updatepost/${blogpost._id}`}><button className=' border-white border-2  text-white rounded-xl p-2 mr-2 hover:border-sky-900 hover:text-sky-900 ease-in-out duration-300' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}} >Update Post</button></Link>
             <button className='border-white border-2  text-white rounded-xl p-2 bg-red-700 hover:bg-red-400 ease-in-out duration-300'>Delete Post</button>
           </div>
         }

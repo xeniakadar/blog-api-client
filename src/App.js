@@ -14,6 +14,7 @@ import TopicDetail from './components/TopicDetail';
 import LoginSignup from './components/LoginSignup';
 import { UserContext } from './contexts/UserContext';
 import PostCreate from './components/PostCreate';
+import PostUpdate from './components/PostUpdate';
 import "./App.css"
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path=':topicId' element={<TopicDetail />} />
           </Route>
           <Route path='/newpost' element={<PostCreate />} />
+          <Route path='/updatepost/:blogpostId' element={<PostUpdate />} />
           <Route path='/authenticate' element={<LoginSignup />} />
         </Routes>
         {/* <Test /> */}
