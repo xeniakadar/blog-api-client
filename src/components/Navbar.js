@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import menuSVG from './images/menu.svg';
-import closeSVG from './images/close.svg';
 import tripImg from './images/triptrek.png';
+import DarkModeToggle from './DarkModeToggle';
+
 import "../App.css"
 
 function Navbar() {
@@ -16,7 +16,7 @@ function Navbar() {
     if (window.innerWidth < 770) {
        toggleMenu();
     }
- };
+  };
 
   const logoutUser = () => {
     localStorage.setItem("token", "");
@@ -38,6 +38,7 @@ function Navbar() {
 
         <li className="relative w-full md:flex md:justify-end">
           <div className={`navbar--right ${menuVisible ? 'absolute md:relative mt-8 flex top-full -right-2 md:right-0 z-60' : 'hidden'} md:flex flex-col w-full justify-end items-end bg-black md:bg-black/[.06] md:rounded-2xl z-20 leading-16 md:flex-row md:w-fit md:h-auto rounded-3xl`}>
+            <DarkModeToggle />
             <Link to={"/"} onClick={handleLinkClick} className="text-white hover:underline border-b-2 border-b-white   md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl  border-gray-700  md:text-black">Homepage</Link>
             <Link to={"/blogposts"} onClick={handleLinkClick} className="text-white hover:underline border-b-2 border-b-white   md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl  border-gray-700  md:text-black">Blogposts</Link>
             <Link to={"/topics"} onClick={handleLinkClick} className="text-white hover:underline border-b-2 border-b-white  md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl  border-gray-700  md:text-black">Destinations</Link>
@@ -50,8 +51,6 @@ function Navbar() {
         </li>
       </ul>
     </nav>
-
-
   );
 }
 
