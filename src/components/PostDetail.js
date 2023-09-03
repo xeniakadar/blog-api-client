@@ -10,7 +10,7 @@ export default function PostDetail() {
   const [blogpostDeleted, setBlogpostDeleted] = useState(false);
   const [deletedComments, setDeletedComments] = useState([]);
 
-  const imageMap = {
+  const colorMap = {
     'Beach': { color: '#8ecae6' },
     'City': {  color: '#edede9' },
     'Desert': { color: '#ead2ac' },
@@ -18,7 +18,7 @@ export default function PostDetail() {
     'Tropics': { color: '#ffc971' },
     'Winter': { color: '#caf0f8' }
   };
-  const commentMap = {
+  const colorDarkMap = {
     'Beach': { color: '#2b93c3' },
     'City': {  color: '#a1a18c' },
     'Desert': { color: '#cc9337' },
@@ -131,11 +131,11 @@ export default function PostDetail() {
   }
 
   return (
-    <div className='blogpost-detail-container w-screen h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3' style={blogpost ? { backgroundColor: imageMap[blogpost.topic.title].color } : {}}>
+    <div className='blogpost-detail-container w-screen h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3' style={blogpost ? { backgroundColor: colorMap[blogpost.topic.title].color } : {}}>
 
       {blogpostDeleted? <h1>Post Deleted</h1> :
       <>
-        <h1 className='topic bg-sky-950 text-sky-100 w-max py-1 px-3 rounded-2xl md:text-xl font-secondary font-bold'>
+        <h1 className='topic text-sky-100 w-max py-1 px-3 rounded-2xl md:text-xl font-secondary font-bold' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}}>
           <Link to={`/topics/${blogpost.topic._id}`} className='hover:text-sky-500'>{blogpost.topic.title.toUpperCase()}</Link>
           <span className='text-white'> / {blogpost.title.toUpperCase()}</span>
         </h1>
@@ -144,12 +144,12 @@ export default function PostDetail() {
 
         {blogpost.userid === localStorage.getItem("userId") &&
           <div className='manage-post'>
-            <button className=' border-white border-2 bg-sky-900 text-white rounded-xl p-2 mr-2 hover:bg-white hover:text-sky-900 ease-in-out duration-300'>Update Post</button>
-            <button className='border-white border-2  bg-sky-900 text-white rounded-xl p-2 hover:bg-red-700 ease-in-out duration-300' onClick={deleteBlogpost}>Delete Post</button>
+            <button className=' border-white border-2  text-white rounded-xl p-2 mr-2 hover:border-sky-900 hover:text-sky-900 ease-in-out duration-300' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}} >Update Post</button>
+            <button className='border-white border-2  text-white rounded-xl p-2 bg-red-700 hover:bg-red-400 ease-in-out duration-300'>Delete Post</button>
           </div>
         }
-        <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: commentMap[blogpost.topic.title].color } : {}}>
-        {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments</h3>}
+        <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: colorDarkMap[blogpost.topic.title].color } : {}}>
+        {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments yet</h3>}
 
           {blogpost.comments.map(comment => (
             <div className='comment-details' key={comment.id || comment._id}>
@@ -169,7 +169,7 @@ export default function PostDetail() {
 
           <form onSubmit={createComment}>
             <input className='rounded-xl px-2 py-1' type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
-            <input className='btn-submit  border-white border-2 bg-sky-900 text-white rounded-xl px-2 py-1 ml-2 hover:bg-white hover:text-sky-900 ease-in-out duration-300' type="submit" value="Add comment" />
+            <input className='btn-submit  border-white border-2 hover:bg-sky-900 hover:text-white rounded-xl px-2 py-1 ml-2 bg-white text-sky-900 ease-in-out duration-300' type="submit" value="Add comment" />
           </form>
         </div>
       </>

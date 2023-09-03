@@ -77,7 +77,7 @@ export default function Homepage() {
         </div>
         <div className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl" style={blogposts && blogposts.length > 0 ? { backgroundColor: imageMap[blogposts[0].topic.title].color } : {}}>
             <NavLink to="/blogposts">
-                <h2 className='bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-500'>Check out the latest blogposts!</h2>
+                <h2 className='bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-500'>Click here for the latest blogposts!</h2>
             </NavLink>
             {blogposts && blogposts.length > 0 && (
               <>
