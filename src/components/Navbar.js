@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import tripImg from './images/triptrek.png';
 import darkTripImg from './images/triptrek-dark.png';
 import DarkModeToggle from './DarkModeToggle';
@@ -60,7 +60,7 @@ function Navbar() {
             <Link to={"/"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-y-2 border-y-black dark:border-y-white md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Homepage</Link>
             <Link to={"/blogposts"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white   md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Blogposts</Link>
             <Link to={"/topics"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Destinations</Link>
-            <Link to={"/newpost"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Create Post</Link>
+            {localStorage.getItem("token") !== "" &&  <Link to={"/newpost"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Create Post</Link> }
             {localStorage.getItem("token") !== "" && <Link to={"/"} onClick={logoutUser} className="dark:text-white text-black hover:underline  w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Log out</Link>}
             {localStorage.getItem("token") === "" &&
                 <Link to={"/authenticate"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline w-full md:w-auto p-4 text-3xl  md:text-xl   md:text-black">Login / Sign up</Link>
