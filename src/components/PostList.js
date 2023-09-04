@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PostHomepage from './PostHomepage';
-import BeachImg from './images/Beach.jpeg';
-import CityImg from './images/City.jpeg';
-import DesertImg from './images/Desert.jpeg';
-import MountainsImg from './images/Mountains.jpeg';
-import TropicsImg from './images/Tropics.jpeg';
-import WinterImg from './images/Winter.jpeg';
 
 export default function PostList() {
 
@@ -30,23 +24,18 @@ export default function PostList() {
     fetchBlogposts();
   }, []);
 
-  const imageMap = {
-    'Beach': BeachImg,
-    'City': CityImg,
-    'Desert': DesertImg,
-    'Mountains': MountainsImg,
-    'Tropics': TropicsImg,
-    'Winter': WinterImg
-  }
-
   if (!blogposts) {
-    <h1>Loading</h1>
+    return (
+      <div className='blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3'>
+        <p className='dark:text-white'>Loading ... </p>
+      </div>
+    )
   }
 
 
   return (
-    <div className={`posts-container -z-0 p-2 m-2 mb-0`}>
-        <h1 className='font-sans pb-2 z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto'>Bloposts</h1>
+    <div className={`posts-container -z-0 p-2 mb-0`}>
+        <h1 className='font-sans dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto'>Bloposts</h1>
         {blogposts.map((post) => (
           <PostHomepage
           key={post._id}

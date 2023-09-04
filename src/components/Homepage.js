@@ -14,10 +14,12 @@ import TravelImg from './images/Travel.jpeg'
 import PalmGif from './videos/Palm.gif';
 import ItalyGif from './videos/Italy.gif';
 import SeaGif from './videos/Sea.gif';
+import ThemeContext from '../contexts/ThemeContext';
 
 export default function Homepage() {
   const [displayName, setDisplayName] = useState(null);
   const [blogposts, setBlogposts] = useState(null);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     setDisplayName(localStorage.getItem("username"));
@@ -41,14 +43,25 @@ export default function Homepage() {
     fetchBlogposts();
   }, []);
 
-  const imageMap = {
-    'Beach': { image: BeachImg, color: '#8ecae6' },
-    'City': { image: CityImg, color: '#edede9' },
-    'Desert': { image: DesertImg, color: '#ead2ac' },
-    'Mountains': { image: MountainsImg, color: '#dde5b6' },
-    'Tropics': { image: TropicsImg, color: '#ffc971' },
-    'Winter': { image: WinterImg, color: '#caf0f8' }
+  const colorMap = {
+    'Beach': {  color: '#8ecae6' },
+    'City': { color: '#edede9' },
+    'Desert': { color: '#ead2ac' },
+    'Mountains': { color: '#dde5b6' },
+    'Tropics': { color: '#ffc971' },
+    'Winter': { color: '#caf0f8' }
   };
+
+  const colorDarkerMap = {
+    'Beach': { color: '#113b4e' },
+    'City': {  color: '#424236' },
+    'Desert': { color: '#533b15' },
+    'Mountains': { color: '#454d1c' },
+    'Tropics': { color: '#1c1f0b' },
+    'Winter': { color: '#0d5666' }
+  };
+
+  const currentColorMap = theme === 'dark' ? colorDarkerMap : colorMap;
 
   let previewTextFirst = "";
   let BlogpostIdFirst = "";
@@ -63,8 +76,6 @@ export default function Homepage() {
     BlogpostIdSecond = blogposts[1]._id
   }
 
-
-
   return (
     <div className='p-2 m-2'>
       {displayName && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl`}>{`Welcome to TripTrek, ${displayName}!`}</h1> }
@@ -74,27 +85,27 @@ export default function Homepage() {
                 <h1 className='blogposts--btn font-secondary text-left font-bold text-base md:text-7xl md:text-white hover:text-sky-200 transition-all ease-in-out duration-300 p-2 leading-6 '>Explore your dream destinations, delve into unique cultures, and find your next adventure.</h1>
             </NavLink>
         </div>
-        <div className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl" style={blogposts && blogposts.length > 0 ? { backgroundColor: imageMap[blogposts[0].topic.title].color } : {}}>
+        <div className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl" style={blogposts && blogposts.length > 0 ? { backgroundColor: currentColorMap[blogposts[0].topic.title].color } : {}}>
             <NavLink to="/blogposts">
                 <h2 className='bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-400'>Click here for the latest blogposts!</h2>
             </NavLink>
             {blogposts && blogposts.length > 0 && (
               <>
-                <div className='bg-white rounded-2xl p-3'>
+                <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3'>
                     <NavLink to={`/blogposts/${BlogpostIdFirst}`}>
-                        <h3 className='pb-2 w-max rounded-2xl font-secondary text-sm md:text-lg font-bold hover:text-sky-500 transition-all ease-in-out duration-300 '>{blogposts[0].title}</h3>
+                        <h3 className='pb-2 dark:text-white w-max rounded-2xl font-secondary text-sm md:text-lg font-bold hover:text-sky-500 transition-all ease-in-out duration-300 '>{blogposts[0].title}</h3>
                     </NavLink>
-                    <p className='font-primary font-light md:text-sm'>{previewTextFirst}</p>
-                    <div className='info text-sky-900 pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
+                    <p className='font-primary dark:text-white font-light md:text-sm'>{previewTextFirst}</p>
+                    <div className='info text-sky-900  dark:text-opacity-40 dark:text-white  pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
                         <p>{blogposts[0].username} - <span>{formatTimestamp(blogposts[0].timestamp)}</span></p>
                     </div>
                 </div>
-                <div className='bg-white rounded-2xl p-3 mt-2'>
+                <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3 mt-2'>
                     <NavLink to={`/blogposts/${BlogpostIdSecond}`}>
-                        <h3 className='pb-2 w-max rounded-2xl font-secondary hover:text-sky-500 text-sm md:text-lg font-bold transition-all ease-in-out duration-300'>{blogposts[1].title}</h3>
+                        <h3 className='pb-2 dark:text-white w-max rounded-2xl font-secondary hover:text-sky-500 text-sm md:text-lg font-bold transition-all ease-in-out duration-300'>{blogposts[1].title}</h3>
                     </NavLink>
-                    <p className='font-primary font-light md:text-sm'>{previewTextSecond}</p>
-                    <div className='info text-sky-900 pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
+                    <p className='font-primary dark:text-white font-light md:text-sm'>{previewTextSecond}</p>
+                    <div className='info text-sky-900 dark:text-opacity-40 dark:text-white pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
                         <p>{blogposts[1].username} - <span>{formatTimestamp(blogposts[1].timestamp)}</span></p>
                     </div>
                 </div>

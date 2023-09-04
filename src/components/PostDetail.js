@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { formatTimestamp } from '../helpers/formatTimestamp';
 import { Link } from 'react-router-dom';
+import ThemeContext from '../contexts/ThemeContext';
 
 export default function PostDetail() {
+  const { theme } = useContext(ThemeContext);
 
   const [blogpost, setBlogpost] = useState(null);
   const [commentText, setCommentText] = useState('');
@@ -27,6 +29,17 @@ export default function PostDetail() {
     'Winter': { color: '#3bc7e5' }
   };
 
+  const colorDarkerMap = {
+    'Beach': { color: '#113b4e' },
+    'City': {  color: '#424236' },
+    'Desert': { color: '#533b15' },
+    'Mountains': { color: '#454d1c' },
+    'Tropics': { color: '#1c1f0b' },
+    'Winter': { color: '#0d5666' }
+  };
+
+  const currentColorMap = theme === 'dark' ? colorDarkerMap : colorMap;
+  const currentDarkColorMap = theme === 'dark' ? colorDarkMap : colorDarkMap;
   const {blogpostId} = useParams();
   const navigate = useNavigate();
 
@@ -127,25 +140,30 @@ export default function PostDetail() {
   }
 
   if (!blogpost) {
-    return <p>Loading ... </p>
+    return (
+      <div className='blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3'>
+
+        <p className='dark:text-white'>Loading ... </p>
+      </div>
+    )
   }
 
   return (
-    <div className='blogpost-detail-container w-screen h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3' style={blogpost ? { backgroundColor: colorMap[blogpost.topic.title].color } : {}}>
+    <div className='blogpost-detail-container max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto my-3 p-3' style={blogpost ? { backgroundColor: currentColorMap[blogpost.topic.title].color } : {}}>
 
       {blogpostDeleted? <h1>Post Deleted</h1> :
       <>
-        <h1 className='topic text-sky-100 w-max py-1 px-3 rounded-2xl md:text-xl font-secondary font-bold' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}}>
+        <h1 className='topic text-sky-100 w-max py-2 mt-2 px-3 rounded-2xl md:text-xl font-secondary font-bold' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}}>
           <Link to={`/topics/${blogpost.topic._id}`} className='hover:text-sky-500'>{blogpost.topic.title.toUpperCase()}</Link>
           <span className='text-white'> / {blogpost.title.toUpperCase()}</span>
         </h1>
-        <p className='text font-primary md:text-lg mb-2 mt-2 pl-0.5'>{blogpost.text}</p>
-        <p className='info text-sky-900 pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold'>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
+        <p className='text dark:text-white font-primary md:text-lg mb-2 mt-2 pl-0.5'>{blogpost.text}</p>
+        <p className='info pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold' style={blogpost ? { color: currentDarkColorMap[blogpost.topic.title].color } : {}}>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
 
         {blogpost.userid === localStorage.getItem("userId") &&
           <div className='manage-post'>
             <Link to={`/updatepost/${blogpost._id}`}><button className=' border-white border-2  text-white rounded-xl p-2 mr-2 hover:border-sky-900 hover:text-sky-900 ease-in-out duration-300' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}} >Update Post</button></Link>
-            <button className='border-white border-2  text-white rounded-xl p-2 bg-red-700 hover:bg-red-400 ease-in-out duration-300'>Delete Post</button>
+            <button className='border-white border-2  text-white rounded-xl p-2 bg-red-700 hover:bg-red-400 ease-in-out duration-300' onClick={deleteBlogpost}>Delete Post</button>
           </div>
         }
         <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: colorDarkMap[blogpost.topic.title].color } : {}}>

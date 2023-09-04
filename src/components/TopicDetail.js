@@ -50,15 +50,21 @@ export default function TopicDetail() {
   }, [topicId]);
 
   if (!blogposts) {
-    return <p>No blogposts about this topic yet</p>
+    return (
+      <div className='blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3'>
+
+        <p className='dark:text-white'>Loading ... </p>
+      </div>
+    )
   }
 
   return (
-    <div className='p-2 m-2'>
+    <div className='p-2 mx-2 h-screen'>
       {topic?
-      <div className="relative bg-no-repeat bg-cover rounded-3xl my-3 -z-10 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ backgroundImage: `url(${imageMap[topic].image})`, height: '450px' }}>
-        <h2 className="topic--bg font-secondary text-3xl font-bold absolute bottom-0 left-0 z-10 p-2">{topic}</h2>
-      </div>
+      <div className="relative overflow-hidden rounded-3xl my-3 w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto" style={{ height: '450px' }}>
+      <div className="bg-image-container absolute inset-0 bg-no-repeat bg-cover" style={{ backgroundImage: `url(${imageMap[topic].image})`, height: '450px' }}></div>
+      <h2 className="topic--bg font-secondary text-3xl font-bold absolute dark:text-white bottom-0 left-0 z-10 p-2">{topic}</h2>
+    </div>
        : null}
 
       {blogposts.map(post => {

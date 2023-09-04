@@ -61,32 +61,39 @@ export default function PostCreate() {
   }
 
   if (!topics) {
-    return <p>Loading ... </p>
+    return (
+      <div className='dark:bg-sky-950 blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3'>
+
+        <p className='dark:text-white'>Loading ... </p>
+      </div>
+    )
   }
 
   return (
-    <div className='w-full  md:max-w-xl md:mx-auto'>
-      <h1 className='mx-4 '>Create Post</h1>
+    // <div className='w-full   md:max-w-xl md:mx-auto'>
+    <div className='blogpost-detail-container max-h-full md:w-9/10  lg:max-w-2xl mx-auto p-3 min-h-screen'>
+
+      <h1 className='mx-4 dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold'>Create Post</h1>
 
       <form className='flex flex-col mx-4 ' onSubmit={createBlogpost}>
         <div className='relative border p-2 mt-2  ' >
-          <label htmlFor="title" className="absolute top-0 left-2 bg-white px-1 text-xs -translate-y-2/4" >
+          <label htmlFor="title" className="absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4" >
             Title
           </label>
-          <input type="text" className='w-full focus:outline-none' id="title" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
+          <input type="text" className='w-full bg-sky-100 rounded-2xl p-2 focus:outline-none' id="title" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
         </div>
         <div className='relative border p-2 mt-2' >
-          <label htmlFor="text" className='absolute top-0 left-2 bg-white px-1 text-xs -translate-y-2/4'>Post</label>
-          <textarea className=' w-full focus:outline-none' id="text" placeholder='What are your thoughts?' value={text} onChange={e => setText(e.target.value)} />
+          <label htmlFor="text" className='absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4'>Post</label>
+          <textarea className=' w-full focus:outline-none bg-sky-100 rounded-2xl p-2' id="text" placeholder='What are your thoughts?' value={text} onChange={e => setText(e.target.value)} />
         </div>
 
-        <label htmlFor="topic">Topic</label>
+        <label htmlFor="topic" className='dark:text-white pt-3 pb-2'>Select Topic:</label>
         <select name="topic" id="topic" className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-base md:text-lg'  value={selectedTopic} onChange={e => setSelectedTopic(e.target.value)}>
           {topics.map((topic) => (
             <option key={topic._id} value={topic._id}>{topic.title}</option>
           ))}
         </select>
-        <input className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-600 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' type="submit" value="Create Post" />
+        <input className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-800 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' type="submit" value="Create Post" />
 
       </form>
 

@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { formatTimestamp } from '../helpers/formatTimestamp';
 import createPreview from '../helpers/createPreview';
+import ThemeContext from '../contexts/ThemeContext';
 
 
 export default function PostHomepage({title, text, username, timestamp, topic, blogpostId}) {
+
+  const { theme } = useContext(ThemeContext);
   const previewText = createPreview(text, 200);
 
   const colorMap = {
@@ -25,8 +28,20 @@ export default function PostHomepage({title, text, username, timestamp, topic, b
     'Winter': { color: '#3bc7e5' }
   };
 
+  const colorDarkerMap = {
+    'Beach': { color: '#113b4e' },
+    'City': {  color: '#424236' },
+    'Desert': { color: '#533b15' },
+    'Mountains': { color: '#454d1c' },
+    'Tropics': { color: '#1c1f0b' },
+    'Winter': { color: '#0d5666' }
+  };
+
+  const currentColorMap = theme === 'dark' ? colorDarkerMap : colorMap;
+
+
   return (
-    <div className="blogpost-container w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 rounded-2xl p-3" style={topic ? { backgroundColor: colorMap[topic].color } : {}}>
+    <div className="blogpost-container w-full md:w-9/10 lg:w-9/10 dark:text-white xl:w-88 xl:max-w-6xl mx-auto mb-3 rounded-2xl p-3" style={topic ? { backgroundColor: currentColorMap[topic].color } : {}}>
       <div className='post'>
         {topic &&
         <h2 className='title ease-in-out duration-300 w-max py-1 px-3 rounded-2xl md:text-lg font-secondary font-bold ' style={topic ? { backgroundColor: colorDarkMap[topic].color, color: colorMap[topic].color } : {}}>{topic.toUpperCase()} <span>/</span> <span className='text-white'> <Link to={`/blogposts/${blogpostId}`}>{title.toUpperCase()}</Link></span> </h2>
