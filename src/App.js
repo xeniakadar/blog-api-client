@@ -1,23 +1,21 @@
 import './App.css';
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 
 import Homepage from "./components/Homepage";
-import Test from "./components/Test";
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
 import TopicsList from './components/TopicsList';
 import TopicDetail from './components/TopicDetail';
 import LoginSignup from './components/LoginSignup';
-import { UserContext } from './contexts/UserContext';
 import PostCreate from './components/PostCreate';
 import PostUpdate from './components/PostUpdate';
-import ThemeContext from './contexts/ThemeContext';
-import "./App.css"
 import UserDetail from './components/UserDetail';
+import ThemeContext from './contexts/ThemeContext';
+import UserContext from './contexts/UserContext';
+import "./App.css"
 
 function App() {
 

@@ -1,23 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import tripImg from './images/triptrek.png';
 import darkTripImg from './images/triptrek-dark.png';
 import DarkModeToggle from './DarkModeToggle';
 import ThemeContext from "../contexts/ThemeContext";
+import UserContext from "../contexts/UserContext";
 
 import "../App.css"
 
 function Navbar() {
-  const [menuVisible, setMenuVisible] = useState(false);
-
   const { theme, setTheme } = useContext(ThemeContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const [menuVisible, setMenuVisible] = useState(false);
 
   useEffect(() => {
     const handleThemeChange = () => {
       setTheme(localStorage.getItem('theme'));
     };
 
+    const storedUserId = localStorage.getItem("userId")
+    if (storedUserId) {
+      setUser({ id: storedUserId});
+    }
+
     window.addEventListener('storage', handleThemeChange);
+    console.log(user)
 
     return () => {
       window.removeEventListener('storage', handleThemeChange);
@@ -35,8 +43,8 @@ function Navbar() {
   };
 
   const logoutUser = () => {
-    localStorage.setItem("token", "");
-    localStorage.setItem("username", "");
+    localStorage.clear();
+    setUser(null);
     window.location.reload();
   }
 
@@ -60,9 +68,10 @@ function Navbar() {
             <Link to={"/"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-y-2 border-y-black dark:border-y-white md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Homepage</Link>
             <Link to={"/blogposts"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white   md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Blogposts</Link>
             <Link to={"/topics"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Destinations</Link>
-            {localStorage.getItem("token") !== "" &&  <Link to={"/newpost"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Create Post</Link> }
-            {localStorage.getItem("token") !== "" && <Link to={"/"} onClick={logoutUser} className="dark:text-white text-black hover:underline  w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Log out</Link>}
-            {localStorage.getItem("token") === "" &&
+            {localStorage.getItem("token") !== null &&  <Link to={"/newpost"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Create Post</Link> }
+            {localStorage.getItem("token") !== null && user && <Link to={`/users/${user._id}`} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Profile</Link> }
+            {localStorage.getItem("token") !== null && <Link to={"/"} onClick={logoutUser} className="dark:text-white text-black hover:underline  w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Log out</Link>}
+            {localStorage.getItem("token") === null &&
                 <Link to={"/authenticate"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline w-full md:w-auto p-4 text-3xl  md:text-xl   md:text-black">Login / Sign up</Link>
             }
           </div>

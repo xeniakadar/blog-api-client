@@ -3,24 +3,16 @@ import "../App.css"
 import { NavLink } from 'react-router-dom';
 import createPreview from '../helpers/createPreview';
 import { formatTimestamp } from '../helpers/formatTimestamp';
-import { useParams } from 'react-router-dom';
-import BeachImg from './images/Beach.jpeg';
-import CityImg from './images/City.jpeg';
-import DesertImg from './images/Desert.jpeg';
-import MountainsImg from './images/Mountains.jpeg';
-import TropicsImg from './images/Tropics.jpeg';
-import WinterImg from './images/Winter.jpeg';
-import TravelImg from './images/Travel.jpeg'
 import PalmGif from './videos/Palm.gif';
 import ItalyGif from './videos/Italy.gif';
-import SeaGif from './videos/Sea.gif';
 import ThemeContext from '../contexts/ThemeContext';
+import UserContext from '../contexts/UserContext';
 
 export default function Homepage() {
   const [displayName, setDisplayName] = useState(null);
   const [blogposts, setBlogposts] = useState(null);
   const { theme } = useContext(ThemeContext);
-
+  const {user} = useContext(UserContext);
   useEffect(() => {
     setDisplayName(localStorage.getItem("username"));
   }, []);
@@ -78,7 +70,7 @@ export default function Homepage() {
 
   return (
     <div className='p-2 mt-2'>
-      {displayName && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl dark:text-white`}>{`Welcome to TripTrek, ${displayName}!`}</h1> }
+      {displayName && user && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl dark:text-white`}>{`Welcome to TripTrek, ${user.username}!`}</h1> }
       <div className="grid md:grid-cols-2 gap-5">
       <div className=" md:col-span-2 p-4 text-white bg-cover rounded-3xl h-48 md:h-[600px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${PalmGif})` } : {}}>
             <NavLink to="/topics">

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Tab } from '@headlessui/react';
-import { UserContext } from '../contexts/UserContext';
+import  UserContext  from '../contexts/UserContext';
 
 export default function LoginSignup() {
   const [registerUsername, setRegisterUsername] = useState("");
@@ -11,8 +11,6 @@ export default function LoginSignup() {
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [error, setError] = useState("");
-  const [selected, setSelected] = useState(false)
-
 
   const navigate = useNavigate();
   const {user, setUser } = useContext(UserContext);
@@ -67,24 +65,22 @@ export default function LoginSignup() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.body.username);
         localStorage.setItem("userId", data.body._id);
-        setUser(data);
+        setUser(data.body);
         setError("");
-        console.log("user logged in", data);
+        console.log("user logged in", data.body);
         navigate("/");
       } else {
         const errorData = await response.json();
         console.error("Error logging in user:", errorData);
         setError( "Wrong password or username");
       }
-
     } catch (error) {
       console.error("an error occurred: ", error);
     }
   }
 
-
   return (
-    <div className="w-screen h-screen w-full  md:max-w-xl md:mx-auto mb-3 p-3">
+    <div className=" h-screen w-full  md:max-w-xl md:mx-auto mb-3 p-3">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-sky-900 p-1">
           <Tab as={Fragment} >
