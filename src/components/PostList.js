@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PostHomepage from './PostHomepage';
+import PostHomepage from './PostShort';
 
 export default function PostList() {
 

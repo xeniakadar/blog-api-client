@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import PostHomepage from './PostHomepage';
+import PostHomepage from './PostShort';
 import BeachImg from './images/Beach.jpeg';
 import CityImg from './images/City.jpeg';
 import DesertImg from './images/Desert.jpeg';

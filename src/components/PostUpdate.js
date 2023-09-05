@@ -52,7 +52,7 @@ export default function PostUpdate() {
 
 
 
-  async function updateBlogpost(e) {
+  async function updateDraft(e) {
     e.preventDefault();
     try {
       const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/${blogpostId}`, {
@@ -79,6 +79,34 @@ export default function PostUpdate() {
       console.error("an error occurred: ", error);
     }
   }
+  async function updateAndPostBlogpost(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/${blogpostId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          "title": title,
+          "text": text,
+          "topic": selectedTopic,
+          "published": true,
+        })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("blogpost created", data);
+        navigate("/blogposts")
+      } else {
+        const errorData = await response.json();
+        console.error("Error creating post :", errorData);
+      }
+    } catch (error) {
+      console.error("an error occurred: ", error);
+    }
+  }
 
   if (!topics) {
     return <p>Loading ... </p>
@@ -88,7 +116,7 @@ export default function PostUpdate() {
     <div className='w-full  md:max-w-xl md:mx-auto'>
       <h1 className='mx-4 '>Update Post</h1>
 
-      <form className='flex flex-col mx-4 ' onSubmit={updateBlogpost}>
+      <form className='flex flex-col mx-4 '>
         <div className='relative border p-2 mt-2  ' >
           <label htmlFor="title" className="absolute top-0 left-2 bg-white px-1 text-xs -translate-y-2/4" >
             Title
@@ -106,7 +134,8 @@ export default function PostUpdate() {
             <option key={topic._id} value={topic._id}>{topic.title}</option>
           ))}
         </select>
-        <input className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-600 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' type="submit" value="Update Post" />
+        <button className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-600 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' onClick={updateAndPostBlogpost} >Update Post</button>
+        <button className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-600 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' onClick={updateDraft}>Save Draft</button>
 
       </form>
 
