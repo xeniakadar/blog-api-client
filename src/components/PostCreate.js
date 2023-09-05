@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Listbox } from '@headlessui/react';
 
 export default function PostCreate() {
-  //
   //get topics
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(topics[0]);
@@ -102,7 +101,7 @@ export default function PostCreate() {
 
       <h1 className='mx-4 dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold'>Create Post</h1>
 
-      <form className='flex flex-col mx-4 ' onSubmit={createBlogpost}>
+      <form className='flex flex-col mx-4 '>
         <div className='relative border p-2 mt-2  ' >
           <label htmlFor="title" className="absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4" >
             Title
@@ -120,8 +119,8 @@ export default function PostCreate() {
             <option key={topic._id} value={topic._id}>{topic.title}</option>
           ))}
         </select>
-        <input className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-800 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' type="submit" value="Create Post" />
-
+        <button className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-800 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' onClick={saveDraft} >Save Draft</button>
+        <button className='btn-submit mt-4 w-full md:w-36 border-2 bg-sky-800 text-white rounded-xl px-3 py-2 hover:bg-white hover:text-sky-900 hover:border-sky-900 ease-in-out duration-300' onClick={createBlogpost}>Create Post</button>
       </form>
 
     </div>
