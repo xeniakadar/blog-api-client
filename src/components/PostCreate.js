@@ -20,7 +20,7 @@ export default function PostCreate() {
 
         if (response.ok) {
           setTopics(data);
-          setSelectedTopic(data[0]?.title || null)
+          setSelectedTopic(data[0]?._id || null)
         } else {
           console.error("failed to fetch topics", data);
         }
@@ -33,6 +33,34 @@ export default function PostCreate() {
   }, []);
 
   async function createBlogpost(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://blog-api-production-c42d.up.railway.app/api/blogposts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          "title": title,
+          "text": text,
+          "topic": selectedTopic,
+          "published": true,
+        })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("blogpost created", data);
+        navigate("/blogposts")
+      } else {
+        const errorData = await response.json();
+        console.error("Error creating post :", errorData);
+      }
+    } catch (error) {
+      console.error("an error occurred: ", error);
+    }
+  }
+  async function saveDraft(e) {
     e.preventDefault();
     try {
       const response = await fetch("https://blog-api-production-c42d.up.railway.app/api/blogposts", {
@@ -70,7 +98,6 @@ export default function PostCreate() {
   }
 
   return (
-    // <div className='w-full   md:max-w-xl md:mx-auto'>
     <div className='blogpost-detail-container max-h-full md:w-9/10  lg:max-w-2xl mx-auto p-3 min-h-screen'>
 
       <h1 className='mx-4 dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold'>Create Post</h1>
@@ -80,11 +107,11 @@ export default function PostCreate() {
           <label htmlFor="title" className="absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4" >
             Title
           </label>
-          <input type="text" className='w-full bg-sky-100 rounded-2xl p-2 focus:outline-none' id="title" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
+          <input type="text" className='w-full bg-sky-100 dark:bg-black dark:text-white rounded-2xl p-2 focus:outline-none' id="title" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
         </div>
         <div className='relative border p-2 mt-2' >
           <label htmlFor="text" className='absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4'>Post</label>
-          <textarea className=' w-full focus:outline-none bg-sky-100 rounded-2xl p-2' id="text" placeholder='What are your thoughts?' value={text} onChange={e => setText(e.target.value)} />
+          <textarea className=' w-full dark:bg-black dark:text-white focus:outline-none bg-sky-100 rounded-2xl p-2' id="text" placeholder='What are your thoughts?' value={text} onChange={e => setText(e.target.value)} />
         </div>
 
         <label htmlFor="topic" className='dark:text-white pt-3 pb-2'>Select Topic:</label>

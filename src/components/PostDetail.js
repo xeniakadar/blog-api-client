@@ -149,7 +149,7 @@ export default function PostDetail() {
   }
 
   return (
-    <div className='blogpost-detail-container max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto my-3 p-3' style={blogpost ? { backgroundColor: currentColorMap[blogpost.topic.title].color } : {}}>
+    <div className='blogpost-detail-container max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto mt-3 p-3' style={blogpost ? { backgroundColor: currentColorMap[blogpost.topic.title].color } : {}}>
 
       {blogpostDeleted? <h1>Post Deleted</h1> :
       <>
