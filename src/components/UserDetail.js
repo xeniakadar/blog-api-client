@@ -1,7 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, Fragment, useRef, useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
+import PostHomepage from './PostShort';
+import PostDropdown from './PostDropdown';
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 export default function UserDetail() {
 
@@ -70,24 +74,35 @@ export default function UserDetail() {
 
   return (
     <>
-      <h1>Welcome to your page user!</h1>
-      {publishedBlogposts.map((blogpost) => {
-        return (
-          <div key={blogpost._id}>
-            <h1>{blogpost.title}</h1>
-            <p>{blogpost.text}</p>
-          </div>
-        )
-      })}
-      {drafts.map((blogpost) => {
-        return (
-          <div key={blogpost._id}>
-            <h1 className='dark:text-white'>DRAFTS</h1>
-            <h1>{blogpost.title}</h1>
-            <p>{blogpost.text}</p>
-          </div>
-        )
-      })}
+      <h1>Welcome to your page {user.username}!</h1>
+      {publishedBlogposts.map((post) => (
+        <PostHomepage
+        key={post._id}
+        blogpostId={post._id}
+        username={post.username}
+        title={post.title}
+        text={post.text}
+        timestamp={post.timestamp}
+        topic={post.topic.title}
+        />
+      ))}
+
+      <h1>Drafts</h1>
+
+      {drafts.map((post) => (
+        <div>
+          <PostDropdown blogpost={post}/>
+          <PostHomepage
+          key={post._id}
+          blogpostId={post._id}
+          username={post.username}
+          title={post.title}
+          text={post.text}
+          timestamp={post.timestamp}
+          topic={post.topic.title}
+          />
+        </div>
+      ))}
     </>
   )
 }
