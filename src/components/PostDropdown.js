@@ -14,8 +14,8 @@ export default function PostDropdown({blogpost, blogpostId, deleteBlogpost}) {
       >
         <path
           d="M4 13V16H7L16 7L13 4L4 13Z"
-          fill="#EDE9FE"
-          stroke="#A78BFA"
+          fill="#e9f8fe"
+          stroke="#8bcafa"
           strokeWidth="2"
         />
       </svg>
@@ -32,8 +32,8 @@ export default function PostDropdown({blogpost, blogpostId, deleteBlogpost}) {
       >
         <path
           d="M4 13V16H7L16 7L13 4L4 13Z"
-          fill="#8B5CF6"
-          stroke="#C4B5FD"
+          fill="#5c9ff6"
+          stroke="#c4b5fd"
           strokeWidth="2"
         />
       </svg>
@@ -53,12 +53,12 @@ export default function PostDropdown({blogpost, blogpostId, deleteBlogpost}) {
           y="6"
           width="10"
           height="10"
-          fill="#EDE9FE"
-          stroke="#A78BFA"
+          fill="#e9f8fe"
+          stroke="#8bcafa"
           strokeWidth="2"
         />
-        <path d="M3 6H17" stroke="#A78BFA" strokeWidth="2" />
-        <path d="M8 6V4H12V6" stroke="#A78BFA" strokeWidth="2" />
+        <path d="M3 6H17" stroke="#8bcafa" strokeWidth="2" />
+        <path d="M8 6V4H12V6" stroke="#8bcafa" strokeWidth="2" />
       </svg>
     )
   }
@@ -76,25 +76,25 @@ export default function PostDropdown({blogpost, blogpostId, deleteBlogpost}) {
           y="6"
           width="10"
           height="10"
-          fill="#8B5CF6"
-          stroke="#C4B5FD"
+          fill="#5c9ff6"
+          stroke="#c4b5fd"
           strokeWidth="2"
         />
-        <path d="M3 6H17" stroke="#C4B5FD" strokeWidth="2" />
-        <path d="M8 6V4H12V6" stroke="#C4B5FD" strokeWidth="2" />
+        <path d="M3 6H17" stroke="#c4b5fd" strokeWidth="2" />
+        <path d="M8 6V4H12V6" stroke="#c4b5fd" strokeWidth="2" />
       </svg>
     )
   }
 
   const id = blogpost? blogpost._id : blogpostId;
   return (
-    <div className="fixed w-80  text-right">
+    <div className="text-right">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-xl bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75" >
+          <Menu.Button className="inline-flex w-full justify-center rounded-xl bg-black dark:bg-white dark:bg-opacity-20 bg-opacity-20 px-4 py-1 md:py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75" >
             More
             <ChevronDownIcon
-              className="ml-2 -mr-1 h-5 w-5 text-black hover:text-black"
+              className="ml-2 -mr-1 h-5 w-5 text-black dark:text-white hover:text-black"
               aria-hidden="true"
             />
           </Menu.Button>
@@ -116,7 +116,7 @@ export default function PostDropdown({blogpost, blogpostId, deleteBlogpost}) {
                   <Link to={`/updatepost/${id}`}>
                     <button
                       className={`${
-                        active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                        active ? 'bg-sky-500 text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-xl px-2 py-2 text-sm`}
                     >
                       {active ? (
@@ -141,17 +141,17 @@ export default function PostDropdown({blogpost, blogpostId, deleteBlogpost}) {
                   <button
                     onClick={(e) => deleteBlogpost(e, id)}
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active ? 'bg-sky-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-xl px-2 py-2 text-sm`}
                   >
                     {active ? (
                       <DeleteActiveIcon
-                        className="mr-2 h-5 w-5 text-violet-400"
+                        className="mr-2 h-5 w-5 text-sky-400"
                         aria-hidden="true"
                       />
                     ) : (
                       <DeleteInactiveIcon
-                        className="mr-2 h-5 w-5 text-violet-400"
+                        className="mr-2 h-5 w-5 text-sky-400"
                         aria-hidden="true"
                       />
                     )}

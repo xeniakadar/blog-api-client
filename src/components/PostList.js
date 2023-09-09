@@ -36,21 +36,21 @@ export default function PostList() {
 
 
   return (
-    <div className={`posts-container -z-0 p-2 mb-0`}>
-        <h1 className='font-sans dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto'>Bloposts</h1>
-        {blogposts.map((post) => (
-          <PostShort
-          key={post._id}
-          blogpostId={post._id}
-          username={post.user.username}
-          userId={post.user._id}
-          title={post.title}
-          text={post.text}
-          timestamp={post.timestamp}
-          topic={post.topic.title}
-          topicId={post.topic._id}
-          />
-        ))}
-      </div>
+    <div className={`posts-container max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto mt-3 p-3`}>
+      <h1 className='font-sans dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto'>Bloposts</h1>
+      {blogposts.map((post) => (
+        <PostShort
+        key={post._id}
+        blogpostId={post._id}
+        username={post.user.username}
+        userId={post.user._id}
+        title={post.title}
+        text={post.text}
+        timestamp={post.timestamp}
+        topic={post.topic.title}
+        topicId={post.topic._id}
+        />
+      ))}
+    </div>
   )
 }

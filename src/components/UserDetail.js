@@ -75,7 +75,7 @@ export default function UserDetail() {
   }, []);
 
   return (
-    <div className='-z-0 p-2 mb-0'>
+    <div className='-z-0 p-2 mb-0 max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto mt-3 p-3'>
       { localUserId === currentUserId &&
         <h1>Check out your posts</h1>
       }
