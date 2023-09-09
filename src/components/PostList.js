@@ -42,12 +42,12 @@ export default function PostList() {
           <PostHomepage
           key={post._id}
           blogpostId={post._id}
-          username={post.username}
+          username={post.user.username}
           title={post.title}
           text={post.text}
           timestamp={post.timestamp}
           topic={post.topic.title}
-          userId={post.userid}
+          userId={post.user._id}
           />
         ))}
       </div>

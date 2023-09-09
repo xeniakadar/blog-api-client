@@ -9,7 +9,7 @@ import TropicsImg from './images/Tropics.jpeg';
 import WinterImg from './images/Winter.jpeg';
 
 export default function TopicDetail() {
-  const [blogposts, setBlogposts] = useState(null);
+  const [blogposts, setBlogposts] = useState([]);
   const [topic, setTopic] = useState(null);
 
   const {topicId} = useParams();
@@ -34,7 +34,6 @@ export default function TopicDetail() {
         })
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setTopic(data.topic.title);
           setBlogposts(data.decodedBlogpost);
         } else {
@@ -72,11 +71,12 @@ export default function TopicDetail() {
           <PostHomepage
           key={post._id}
           blogpostId={post._id}
-          username={post.username}
+          username={post.user.username}
           title={post.title}
           text={post.text}
           timestamp={post.timestamp}
           topic={topic}
+          userId={post.user._id}
           />
         )
       })}

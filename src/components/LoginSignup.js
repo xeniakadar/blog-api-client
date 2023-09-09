@@ -67,8 +67,8 @@ export default function LoginSignup() {
         localStorage.setItem("userId", data.body._id);
         setUser(data.body);
         setError("");
-        console.log("user logged in", data.body);
         navigate("/");
+        window.location.reload();
       } else {
         const errorData = await response.json();
         console.error("Error logging in user:", errorData);

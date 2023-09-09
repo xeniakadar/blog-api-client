@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import "../App.css"
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import createPreview from '../helpers/createPreview';
 import { formatTimestamp } from '../helpers/formatTimestamp';
 import PalmGif from './videos/Palm.gif';
@@ -61,7 +61,7 @@ export default function Homepage() {
   }
   let previewTextSecond = "";
   let BlogpostIdSecond = "";
-  if (blogposts && blogposts.length > 0) {
+  if (blogposts && blogposts.length > 1) {
     previewTextSecond = createPreview(blogposts[1].text, 450);
     BlogpostIdSecond = blogposts[1]._id
   }
@@ -71,49 +71,48 @@ export default function Homepage() {
       {displayName && user && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl dark:text-white`}>{`Welcome to TripTrek, ${displayName}!`}</h1> }
       <div className="grid md:grid-cols-2 gap-5">
       <div className=" md:col-span-2 p-4 text-white bg-cover rounded-3xl h-48 md:h-[600px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${PalmGif})` } : {}}>
-            <NavLink to="/topics">
+            <Link to="/topics">
                 <h1 className='blogposts--btn font-secondary text-left font-bold text-base md:text-7xl md:text-white hover:text-sky-200 transition-all ease-in-out duration-300 p-2 leading-6 '>Explore your dream destinations, delve into unique cultures, and find your next adventure.</h1>
-            </NavLink>
+            </Link>
         </div>
         <div className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl" style={blogposts && blogposts.length > 0 ? { backgroundColor: currentColorMap[blogposts[0].topic.title].color } : {}}>
-            <NavLink to="/blogposts">
+            <Link to="/blogposts">
                 <h2 className='bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-400'>Click here for the latest blogposts!</h2>
-            </NavLink>
+            </Link>
             {blogposts && blogposts.length > 0 && (
-              <>
-                <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3'>
-                    <NavLink to={`/blogposts/${BlogpostIdFirst}`}>
-                        <h3 className='pb-2 dark:text-white w-max rounded-2xl font-secondary text-sm md:text-lg font-bold hover:text-sky-500 transition-all ease-in-out duration-300 '>{blogposts[0].title}</h3>
-                    </NavLink>
-                    <p className='font-primary dark:text-white font-light md:text-sm'>{previewTextFirst}</p>
-                    <div className='info text-sky-900  dark:text-opacity-40 dark:text-white  pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
-                        <p>{blogposts[0].username} - <span>{formatTimestamp(blogposts[0].timestamp)}</span></p>
-                    </div>
+              <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3'>
+                  <Link to={`/blogposts/${BlogpostIdFirst}`}>
+                      <h3 className='pb-2 dark:text-white w-max rounded-2xl font-secondary text-sm md:text-lg font-bold hover:text-sky-500 transition-all ease-in-out duration-300 '>{blogposts[0].title}</h3>
+                  </Link>
+                  <p className='font-primary dark:text-white font-light md:text-sm'>{previewTextFirst}</p>
+                  <div className='info text-sky-900  dark:text-opacity-40 dark:text-white  pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
+                      <p><Link to={`/users/${blogposts[0].user._id}`}>{blogposts[0].user.username}</Link> - <span>{formatTimestamp(blogposts[0].timestamp)}</span></p>
+                  </div>
+              </div>
+            )}
+
+            {blogposts && blogposts.length > 1 && (
+              <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3 mt-2'>
+                <Link to={`/blogposts/${BlogpostIdSecond}`}>
+                    <h3 className='pb-2 dark:text-white w-max rounded-2xl font-secondary hover:text-sky-500 text-sm md:text-lg font-bold transition-all ease-in-out duration-300'>{blogposts[1].title}</h3>
+                </Link>
+                <p className='font-primary dark:text-white font-light md:text-sm'>{previewTextSecond}</p>
+                <div className='info text-sky-900 dark:text-opacity-40 dark:text-white pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
+                    <p><Link to={`/users/${blogposts[1].user._id}`}>{blogposts[1].user.username}</Link> - <span>{formatTimestamp(blogposts[1].timestamp)}</span></p>
                 </div>
-                <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3 mt-2'>
-                    <NavLink to={`/blogposts/${BlogpostIdSecond}`}>
-                        <h3 className='pb-2 dark:text-white w-max rounded-2xl font-secondary hover:text-sky-500 text-sm md:text-lg font-bold transition-all ease-in-out duration-300'>{blogposts[1].title}</h3>
-                    </NavLink>
-                    <p className='font-primary dark:text-white font-light md:text-sm'>{previewTextSecond}</p>
-                    <div className='info text-sky-900 dark:text-opacity-40 dark:text-white pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-medium'>
-                        <p>{blogposts[1].username} - <span>{formatTimestamp(blogposts[1].timestamp)}</span></p>
-                    </div>
-                </div>
-              </>
+              </div>
             )}
         </div>
 
-
-
         <div className="rounded-3xl font-secondary font-bold md:col-span-1 p-4 bg-sky-800 text-white" >
             {displayName ?
-                <NavLink to="/newpost">
+                <Link to="/newpost">
                   <h2 className='homepage text-xl md:text-2xl hover:text-sky-200 transition-all ease-in-out duration-300'>Share your journey with us. Craft your travel story and inspire wanderlust around the world!</h2>
-                </NavLink>
+                </Link>
                 :
-                <NavLink to="/authenticate">
+                <Link to="/authenticate">
                   <h2 className='homepage text-xl md:text-2xl'>Discover the world with TripTrek! <span className=' text-lime-100 hover:underline  transition-all ease-in-out duration-300'>Sign up</span> today to join our vibrant community of travelers and unlock exclusive features and insights tailored just for you. Dive in and start your journey!</h2>
-                </NavLink>
+                </Link>
             }
         </div>
         <div className=" md:col-span-1 h-72 row-span-3 p-4 bg-cover rounded-3xl md:h-[500px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${ItalyGif})` } : {}}> </div>

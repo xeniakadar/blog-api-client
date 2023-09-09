@@ -158,9 +158,9 @@ export default function PostDetail() {
           <span className='text-white'> / {blogpost.title.toUpperCase()}</span>
         </h1>
         <p className='text dark:text-white font-primary md:text-lg mb-2 mt-2 pl-0.5'>{blogpost.text}</p>
-        <p className='info pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold' style={blogpost ? { color: currentDarkColorMap[blogpost.topic.title].color } : {}}>By <span className='span-user'><Link to={`/users/${blogpost.userid}`}>{blogpost.username}</Link></span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
+        <p className='info pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold' style={blogpost ? { color: currentDarkColorMap[blogpost.topic.title].color } : {}}>By <span className='span-user'><Link to={`/users/${blogpost.user._id}`}>{blogpost.user.username}</Link></span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
 
-        {blogpost.userid === localStorage.getItem("userId") &&
+        {blogpost.user._id === localStorage.getItem("userId") &&
           <div className='manage-post'>
             <Link to={`/updatepost/${blogpost._id}`}><button className=' border-white border-2  text-white rounded-xl p-2 mr-2 hover:border-sky-900 hover:text-sky-900 ease-in-out duration-300' style={blogpost? {backgroundColor: colorDarkMap[blogpost.topic.title].color} : {}} >Update Post</button></Link>
             <button className='border-white border-2  text-white rounded-xl p-2 bg-red-700 hover:bg-red-400 ease-in-out duration-300' onClick={deleteBlogpost}>Delete Post</button>
@@ -177,7 +177,7 @@ export default function PostDetail() {
                   <p className='comment-info'> <span className='font-bold'><Link to={`/users/${comment.userid}`}>{comment.username}</Link></span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
                   <p className='comment-text'>{comment.text}</p>
                 </div>
-                {(comment.userid === localStorage.getItem("userId") || blogpost.userid === localStorage.getItem("userId")) &&
+                {(comment.user._id === localStorage.getItem("userId") || blogpost.user._id === localStorage.getItem("userId")) &&
                   <button className=' text-red-700 font-extrabold' onClick={() => deleteComment(comment._id)}>Delete</button>
                 }
               </div>

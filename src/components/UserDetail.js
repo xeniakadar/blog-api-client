@@ -88,12 +88,8 @@ export default function UserDetail() {
   }
 
   useEffect(() => {
-    console.log(user)
-    if (!currentUserId) return;
-    console.log("currentUserId",currentUserId);
-    console.log("userId",userId);
     fetchPublishedBlogposts();
-    if (user && user._id === currentUserId || localUserId === currentUserId) {
+    if ((user && user._id === currentUserId) || (localUserId === currentUserId)) {
       fetchDrafts();
     }
   }, []);
@@ -107,7 +103,7 @@ export default function UserDetail() {
         <PostHomepage
         key={post._id}
         blogpostId={post._id}
-        username={post.username}
+        username={post.user.username}
         title={post.title}
         text={post.text}
         timestamp={post.timestamp}
@@ -128,7 +124,7 @@ export default function UserDetail() {
               <PostHomepage
               key={post._id}
               blogpostId={post._id}
-              username={post.username}
+              username={post.user.username}
               title={post.title}
               text={post.text}
               timestamp={post.timestamp}
