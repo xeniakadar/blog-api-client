@@ -49,9 +49,6 @@ export default function PostUpdate() {
     fetchBlogpost();
   }, [blogpostId]);
 
-
-
-
   async function updateDraft(e) {
     e.preventDefault();
     try {
