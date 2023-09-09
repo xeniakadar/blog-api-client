@@ -1,6 +1,5 @@
 import React, {useContext, Fragment, useRef, useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import PostHomepage from './PostShort';
 import PostDropdown from './PostDropdown';
@@ -12,6 +11,7 @@ export default function UserDetail() {
   const { userId } = useParams();
   const { user } = useContext(UserContext);
   const currentUserId = userId ||(user && user._id);
+  const localUserId = localStorage.getItem("userId");
 
   const [publishedBlogposts, setPublishedBlogposts] = useState([]);
   const [drafts, setDrafts] = useState([]);
@@ -57,25 +57,32 @@ export default function UserDetail() {
       } else {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+
+      if (response === []) {
+        console.log("no drafts")
+      }
     } catch (error) {
       console.error("an error occured:", error);
     }
   }
+
   useEffect(() => {
     console.log(user)
     if (!currentUserId) return;
     console.log("currentUserId",currentUserId);
     console.log("userId",userId);
     fetchPublishedBlogposts();
-    if (user && user._id === currentUserId) {
+    if (user && user._id === currentUserId || localUserId === currentUserId) {
       fetchDrafts();
     }
   }, []);
 
   return (
     <>
-      <h1>Welcome to your page {user.username}!</h1>
+      {/* <h1>Welcome to your page {user.username}!</h1> */}
       {publishedBlogposts.map((post) => (
+        <div key={post._id}>
+        <PostDropdown blogpost={post}/>
         <PostHomepage
         key={post._id}
         blogpostId={post._id}
@@ -85,6 +92,8 @@ export default function UserDetail() {
         timestamp={post.timestamp}
         topic={post.topic.title}
         />
+        </div>
+
       ))}
 
       <h1>Drafts</h1>

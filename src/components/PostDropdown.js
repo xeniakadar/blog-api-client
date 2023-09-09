@@ -1,17 +1,16 @@
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useContext, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
 
 export default function PostDropdown(blogpost, deleteBlopost) {
-
   return (
     <Menu>
       <Menu.Button>More</Menu.Button>
       <Menu.Items>
         <Menu.Item>
           {({ active }) => (
-            <Link to={`/updatepost/${blogpost._id}`}>
+            <Link to={`/updatepost/${blogpost.blogpost._id}`}>
             <button
               className={`${active && 'bg-blue-500'}`}
             >

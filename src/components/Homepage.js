@@ -12,10 +12,7 @@ export default function Homepage() {
   const [displayName, setDisplayName] = useState(null);
   const [blogposts, setBlogposts] = useState(null);
   const { theme } = useContext(ThemeContext);
-  const {user} = useContext(UserContext);
-  useEffect(() => {
-    setDisplayName(localStorage.getItem("username"));
-  }, []);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     async function fetchBlogposts() {
@@ -32,6 +29,7 @@ export default function Homepage() {
         console.error("an error occured:", error);
       }
     }
+    setDisplayName(localStorage.getItem("username"));
     fetchBlogposts();
   }, []);
 
@@ -70,7 +68,7 @@ export default function Homepage() {
 
   return (
     <div className='p-2 mt-2'>
-      {displayName && user && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl dark:text-white`}>{`Welcome to TripTrek, ${user.username}!`}</h1> }
+      {displayName && user && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl dark:text-white`}>{`Welcome to TripTrek, ${displayName}!`}</h1> }
       <div className="grid md:grid-cols-2 gap-5">
       <div className=" md:col-span-2 p-4 text-white bg-cover rounded-3xl h-48 md:h-[600px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${PalmGif})` } : {}}>
             <NavLink to="/topics">

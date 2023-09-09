@@ -12,12 +12,17 @@ function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
 
+
   const [menuVisible, setMenuVisible] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState(null);
+
 
   useEffect(() => {
     const handleThemeChange = () => {
       setTheme(localStorage.getItem('theme'));
     };
+
+    setCurrentUserId(localStorage.getItem("userId"));
 
     const storedUserId = localStorage.getItem("userId")
     if (storedUserId) {
@@ -69,7 +74,7 @@ function Navbar() {
             <Link to={"/blogposts"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white   md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Blogposts</Link>
             <Link to={"/topics"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Destinations</Link>
             {localStorage.getItem("token") !== null &&  <Link to={"/newpost"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Create Post</Link> }
-            {localStorage.getItem("token") !== null && user && <Link to={`/users/${user._id}`} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Profile</Link> }
+            {localStorage.getItem("token") !== null && user && <Link to={`/users/${currentUserId}`} onClick={handleLinkClick} className="dark:text-white text-black hover:underline border-b-2 border-b-black dark:border-b-white  md:border-none w-full md:w-auto p-4 text-3xl md:text-xl md:text-black">Profile</Link> }
             {localStorage.getItem("token") !== null && <Link to={"/"} onClick={logoutUser} className="dark:text-white text-black hover:underline  w-full md:w-auto p-4 text-3xl  md:text-xl md:text-black">Log out</Link>}
             {localStorage.getItem("token") === null &&
                 <Link to={"/authenticate"} onClick={handleLinkClick} className="dark:text-white text-black hover:underline w-full md:w-auto p-4 text-3xl  md:text-xl   md:text-black">Login / Sign up</Link>
