@@ -69,19 +69,16 @@ export default function TopicDetail() {
        : null}
       {blogposts.length < 1 && (
         <>
-<div className="relative h-72 p-4 bg-cover rounded-3xl md:h-[400px]"
-     style={blogposts.length < 1 ? { backgroundImage: `url(${SeaGif})` } : {}}>
-    <div className="absolute inset-0 rounded-3xl bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-30"></div>
-    <h1 className='relative text-black dark:text-white font-extrabold text-2xl md:text-6xl'>No posts yet. Be the first one to blog about this destination</h1>
-    {loggedIn?
-    <h1 className='relative pt-2 md:pt-4 dark:text-white font-semibold md:text-2xl opacity-70'><span className='underline'><Link to={'/newpost'}>Click here</Link></span> to write a new blog!</h1> :
-    <h1 className='relative pt-2 md:pt-4 dark:text-white font-semibold md:text-2xl opacity-70'><span className='underline'><Link to={'/authenticate'}>Click here</Link></span> to sign up and write a new blog!</h1>
-
-    }
-</div>
-
+          <div className="relative h-72 p-4 bg-cover rounded-3xl md:h-[400px]"
+              style={blogposts.length < 1 ? { backgroundImage: `url(${SeaGif})` } : {}}>
+              <div className="absolute inset-0 rounded-3xl bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-30"></div>
+              <h1 className='relative text-black dark:text-white font-extrabold text-2xl md:text-6xl'>No posts yet. Be the first one to blog about this destination</h1>
+              {loggedIn?
+              <h1 className='relative pt-2 md:pt-4 dark:text-white font-semibold md:text-2xl opacity-70'><span className='underline'><Link to={'/newpost'}>Click here</Link></span> to write a new blog!</h1> :
+              <h1 className='relative pt-2 md:pt-4 dark:text-white font-semibold md:text-2xl opacity-70'><span className='underline'><Link to={'/authenticate'}>Click here</Link></span> to sign up!</h1>
+              }
+          </div>
         </>
-
       )}
 
       {blogposts.map(post => {
