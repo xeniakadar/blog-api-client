@@ -116,7 +116,7 @@ export default function Homepage() {
             }
         </div>
         <div className=" md:col-span-1 h-72 row-span-3 p-4 bg-cover rounded-3xl md:h-[500px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${ItalyGif})` } : {}}> </div>
-    </div>
+      </div>
     </div>
 
 

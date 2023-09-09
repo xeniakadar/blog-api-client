@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import PostShort from './PostShort';
 import BeachImg from './images/Beach.jpeg';
 import CityImg from './images/City.jpeg';
@@ -7,10 +7,12 @@ import DesertImg from './images/Desert.jpeg';
 import MountainsImg from './images/Mountains.jpeg';
 import TropicsImg from './images/Tropics.jpeg';
 import WinterImg from './images/Winter.jpeg';
+import SeaGif from './videos/Sea.gif';
 
 export default function TopicDetail() {
   const [blogposts, setBlogposts] = useState([]);
   const [topic, setTopic] = useState(null);
+  const loggedIn = localStorage.getItem("token");
 
   const {topicId} = useParams();
 
@@ -65,6 +67,22 @@ export default function TopicDetail() {
       <h2 className="topic--bg font-secondary text-3xl font-bold absolute dark:text-white bottom-0 left-0 z-10 p-2">{topic}</h2>
     </div>
        : null}
+      {blogposts.length < 1 && (
+        <>
+<div className="relative h-72 p-4 bg-cover rounded-3xl md:h-[400px]"
+     style={blogposts.length < 1 ? { backgroundImage: `url(${SeaGif})` } : {}}>
+    <div className="absolute inset-0 rounded-3xl bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-30"></div>
+    <h1 className='relative text-black dark:text-white font-extrabold text-2xl md:text-6xl'>No posts yet. Be the first one to blog about this destination</h1>
+    {loggedIn?
+    <h1 className='relative pt-2 md:pt-4 dark:text-white font-semibold md:text-2xl opacity-70'><span className='underline'><Link to={'/newpost'}>Click here</Link></span> to write a new blog!</h1> :
+    <h1 className='relative pt-2 md:pt-4 dark:text-white font-semibold md:text-2xl opacity-70'><span className='underline'><Link to={'/authenticate'}>Click here</Link></span> to sign up and write a new blog!</h1>
+
+    }
+</div>
+
+        </>
+
+      )}
 
       {blogposts.map(post => {
         return (

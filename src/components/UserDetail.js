@@ -95,7 +95,10 @@ export default function UserDetail() {
   }, []);
 
   return (
-    <>
+    <div className='-z-0 p-2 mb-0'>
+      { localUserId === currentUserId &&
+        <h1>Check out your posts</h1>
+      }
       {/* <h1>Welcome to your page {user.username}!</h1> */}
       {publishedBlogposts.map((post) => (
         <div key={post._id}>
@@ -134,6 +137,6 @@ export default function UserDetail() {
           ))}
         </>
       }
-    </>
+    </div>
   )
 }
