@@ -5,7 +5,7 @@ import createPreview from '../helpers/createPreview';
 import ThemeContext from '../contexts/ThemeContext';
 
 
-export default function PostHomepage({title, text, username, timestamp, topic, blogpostId}) {
+export default function PostHomepage({title, text, username, timestamp, topic, blogpostId, userId}) {
 
   const { theme } = useContext(ThemeContext);
   const previewText = createPreview(text, 200);
@@ -51,7 +51,7 @@ export default function PostHomepage({title, text, username, timestamp, topic, b
         <p className='text font-primary font-light text-sm md:text-base py-3'>{previewText}</p>
       </div>
       <div className='info pb-1 w-max rounded-2xl font-secondary text-sm md:text-base font-bold' style={topic ? { color: colorDarkMap[topic].color } : {}}>
-        <p>{username} - <span>{formatTimestamp(timestamp)}</span></p>
+        <p><Link to={`/users/${userId}`}>{username}</Link> - <span>{formatTimestamp(timestamp)}</span></p>
       </div>
     </div>
   )

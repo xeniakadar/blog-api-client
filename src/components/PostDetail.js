@@ -158,7 +158,7 @@ export default function PostDetail() {
           <span className='text-white'> / {blogpost.title.toUpperCase()}</span>
         </h1>
         <p className='text dark:text-white font-primary md:text-lg mb-2 mt-2 pl-0.5'>{blogpost.text}</p>
-        <p className='info pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold' style={blogpost ? { color: currentDarkColorMap[blogpost.topic.title].color } : {}}>By <span className='span-user'>{blogpost.username}</span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
+        <p className='info pb-1 w-max rounded-2xl font-secondary text-sm md:text-lg pl-0.5 font-bold' style={blogpost ? { color: currentDarkColorMap[blogpost.topic.title].color } : {}}>By <span className='span-user'><Link to={`/users/${blogpost.userid}`}>{blogpost.username}</Link></span> - <span>{formatTimestamp(blogpost.timestamp)}</span></p>
 
         {blogpost.userid === localStorage.getItem("userId") &&
           <div className='manage-post'>
@@ -174,7 +174,7 @@ export default function PostDetail() {
               {deletedComments.includes(comment._id)? <p className='comment-text'>Comment successfully deleted</p> :
               <div className='bg-white rounded-xl my-2 p-2 flex justify-between items-start'>
                 <div>
-                  <p className='comment-info'> <span className='font-bold'>{comment.username}</span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
+                  <p className='comment-info'> <span className='font-bold'><Link to={`/users/${comment.userid}`}>{comment.username}</Link></span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
                   <p className='comment-text'>{comment.text}</p>
                 </div>
                 {(comment.userid === localStorage.getItem("userId") || blogpost.userid === localStorage.getItem("userId")) &&

@@ -103,7 +103,7 @@ export default function UserDetail() {
       {/* <h1>Welcome to your page {user.username}!</h1> */}
       {publishedBlogposts.map((post) => (
         <div key={post._id}>
-        <PostDropdown blogpost={post} deleteBlogpost={deleteBlogpost} />
+        {localUserId === currentUserId && <PostDropdown blogpost={post} deleteBlogpost={deleteBlogpost} />}
         <PostHomepage
         key={post._id}
         blogpostId={post._id}
@@ -117,22 +117,27 @@ export default function UserDetail() {
 
       ))}
 
-      <h1>Drafts</h1>
 
-      {drafts.map((post) => (
-        <div key={post._id}>
-          <PostDropdown blogpost={post} deleteBlogpost={deleteBlogpost} />
-          <PostHomepage
-          key={post._id}
-          blogpostId={post._id}
-          username={post.username}
-          title={post.title}
-          text={post.text}
-          timestamp={post.timestamp}
-          topic={post.topic.title}
-          />
-        </div>
-      ))}
+      {localUserId === currentUserId &&
+        <>
+          <h1>Drafts</h1>
+
+          {drafts.map((post) => (
+            <div key={post._id}>
+              <PostDropdown blogpost={post} deleteBlogpost={deleteBlogpost} />
+              <PostHomepage
+              key={post._id}
+              blogpostId={post._id}
+              username={post.username}
+              title={post.title}
+              text={post.text}
+              timestamp={post.timestamp}
+              topic={post.topic.title}
+              />
+            </div>
+          ))}
+        </>
+      }
     </>
   )
 }

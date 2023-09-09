@@ -12,6 +12,7 @@ export default function PostList() {
         const data = await response.json();
 
         if (response.ok) {
+          console.log(data);
           setBlogposts(data);
         } else {
           console.error("failed to fetch blogposts", data);
@@ -22,6 +23,7 @@ export default function PostList() {
     }
 
     fetchBlogposts();
+    console.log(blogposts)
   }, []);
 
   if (!blogposts) {
@@ -45,6 +47,7 @@ export default function PostList() {
           text={post.text}
           timestamp={post.timestamp}
           topic={post.topic.title}
+          userId={post.userid}
           />
         ))}
       </div>
