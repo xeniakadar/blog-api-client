@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import PostHomepage from './PostShort';
+import PostShort from './PostShort';
 import BeachImg from './images/Beach.jpeg';
 import CityImg from './images/City.jpeg';
 import DesertImg from './images/Desert.jpeg';
@@ -68,15 +68,15 @@ export default function TopicDetail() {
 
       {blogposts.map(post => {
         return (
-          <PostHomepage
+          <PostShort
           key={post._id}
           blogpostId={post._id}
           username={post.user.username}
+          userId={post.user._id}
           title={post.title}
           text={post.text}
           timestamp={post.timestamp}
           topic={topic}
-          userId={post.user._id}
           />
         )
       })}

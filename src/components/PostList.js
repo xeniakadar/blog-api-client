@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PostHomepage from './PostShort';
+import PostShort from './PostShort';
 
 export default function PostList() {
 
@@ -39,15 +39,16 @@ export default function PostList() {
     <div className={`posts-container -z-0 p-2 mb-0`}>
         <h1 className='font-sans dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto'>Bloposts</h1>
         {blogposts.map((post) => (
-          <PostHomepage
+          <PostShort
           key={post._id}
           blogpostId={post._id}
           username={post.user.username}
+          userId={post.user._id}
           title={post.title}
           text={post.text}
           timestamp={post.timestamp}
           topic={post.topic.title}
-          userId={post.user._id}
+          topicId={post.topic._id}
           />
         ))}
       </div>
