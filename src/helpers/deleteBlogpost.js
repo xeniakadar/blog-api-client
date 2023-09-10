@@ -12,7 +12,7 @@ export default async function deleteBlogpost(e, id) {
       window.location.reload();
     } else {
       const errorData = await response.json();
-      console.error("error creating post:", errorData);
+      console.error("error deleting post:", errorData);
     }
   } catch(error) {
     console.error("an error occurred: ", error);
