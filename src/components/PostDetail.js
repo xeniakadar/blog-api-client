@@ -141,8 +141,7 @@ export default function PostDetail() {
 
   if (!blogpost) {
     return (
-      <div className='blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3'>
-
+      <div className='blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3 dark:bg-sky-950'>
         <p className='dark:text-white'>Loading ... </p>
       </div>
     )
@@ -167,23 +166,23 @@ export default function PostDetail() {
           </div>
         }
         <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: colorDarkMap[blogpost.topic.title].color } : {}}>
-        {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments yet</h3>}
 
-          {blogpost.comments.map(comment => (
-            <div className='comment-details' key={comment.id || comment._id}>
-              {deletedComments.includes(comment._id)? <p className='comment-text'>Comment successfully deleted</p> :
-              <div className='bg-white rounded-xl my-2 p-2 flex justify-between items-start'>
-                <div>
-                  <p className='comment-info'> <span className='font-bold'><Link to={`/users/${comment.userid}`}>{comment.username}</Link></span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
-                  <p className='comment-text'>{comment.text}</p>
-                </div>
-                {(comment.user._id === localStorage.getItem("userId") || blogpost.user._id === localStorage.getItem("userId")) &&
-                  <button className=' text-red-700 font-extrabold' onClick={() => deleteComment(comment._id)}>Delete</button>
-                }
+        {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments yet</h3>}
+        {blogpost.comments.map(comment => (
+          <div className='comment-details' key={comment.id || comment._id}>
+            {deletedComments.includes(comment._id)? <p className='comment-text'>Comment successfully deleted</p> :
+            <div className='bg-white rounded-xl my-2 p-2 flex justify-between items-start'>
+              <div>
+                <p className='comment-info'> <span className='font-bold'><Link to={`/users/${comment.user}`}>{comment.user}</Link></span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
+                <p className='comment-text'>{comment.text}</p>
               </div>
+              {(comment.user._id === localStorage.getItem("userId") || blogpost.user._id === localStorage.getItem("userId")) &&
+                <button className=' text-red-700 font-extrabold' onClick={() => deleteComment(comment._id)}>Delete</button>
               }
             </div>
-          ))}
+            }
+          </div>
+        ))}
 
           <form onSubmit={createComment}>
             <input className='rounded-xl px-2 py-1' type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
