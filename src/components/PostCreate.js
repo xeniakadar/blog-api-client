@@ -7,6 +7,8 @@ export default function PostCreate() {
   const [selectedTopic, setSelectedTopic] = useState(topics[0]);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [blogpostError, setBlogpostError] = useState("");
 
   const navigate = useNavigate();
 
@@ -52,6 +54,13 @@ export default function PostCreate() {
         navigate("/blogposts")
       } else {
         const errorData = await response.json();
+        for (let error of errorData.errors) {
+          if (error.msg === "Title must be specified") {
+            setTitleError('Title cannot exceed 30 characters')
+          } else if (error.msg === "Your blogpost must be at least 5 characters long") {
+            setBlogpostError(error.msg);
+          }
+        }
         console.error("Error creating post :", errorData);
       }
     } catch (error) {
@@ -101,12 +110,14 @@ export default function PostCreate() {
       <h1 className='mx-4 dark:text-white pb-2 z-0 text-3xl md:text-5xl font-extrabold'>Create Post</h1>
 
       <form className='flex flex-col mx-4 '>
-        <div className='relative border p-2 mt-2  ' >
+        {titleError && <h1 className='text-red-800 dark:text-red-300 font-bold'>{titleError}</h1> }
+        <div className='relative border p-2 my-3  ' >
           <label htmlFor="title" className="absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4" >
             Title
           </label>
           <input type="text" className='w-full bg-sky-100 dark:bg-black dark:text-white rounded-2xl p-2 focus:outline-none' id="title" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
         </div>
+        {blogpostError && <h1 className='text-red-800 dark:text-red-300 font-bold'>{blogpostError}</h1> }
         <div className='relative border p-2 mt-2' >
           <label htmlFor="text" className='absolute top-0 left-2 bg-white dark:bg-sky-950 dark:text-white px-1 text-xs -translate-y-2/4'>Post</label>
           <textarea className=' w-full dark:bg-black dark:text-white focus:outline-none bg-sky-100 rounded-2xl p-2' id="text" placeholder='What are your thoughts?' value={text} onChange={e => setText(e.target.value)} />
