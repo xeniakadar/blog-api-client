@@ -8,9 +8,12 @@ export default function PostDetail() {
   const { theme } = useContext(ThemeContext);
 
   const [blogpost, setBlogpost] = useState(null);
+  const [comments, setComments ] = useState(null);
   const [commentText, setCommentText] = useState('');
   const [blogpostDeleted, setBlogpostDeleted] = useState(false);
   const [deletedComments, setDeletedComments] = useState([]);
+  const [isLoadingComments, setIsLoadingComments] = useState(true);
+
 
   const colorMap = {
     'Beach': { color: '#8ecae6' },
@@ -50,7 +53,6 @@ export default function PostDetail() {
         const data = await response.json();
 
         if (response.ok) {
-          console.log(data);
           setBlogpost(data);
         } else {
           console.error("failed to fetch blogposts", data);
@@ -60,7 +62,26 @@ export default function PostDetail() {
       }
     }
 
+    async function fetchCommentsForBlogpost() {
+      try {
+        const response = await fetch(`https://blog-api-production-c42d.up.railway.app/api/blogposts/${blogpostId}/comments`);
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log(data);
+          setComments(data);
+        } else {
+          console.error("failed to fetch comment", data);
+        }
+      } catch (error) {
+        console.error("an error occured:", error);
+      } finally {
+        setIsLoadingComments(false); // set to false after fetch is done
+      }
+    }
+
     fetchBlogpost();
+    fetchCommentsForBlogpost();
   }, [blogpostId]);
 
   async function deleteBlogpost(e) {
@@ -166,23 +187,29 @@ export default function PostDetail() {
           </div>
         }
         <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: colorDarkMap[blogpost.topic.title].color } : {}}>
-
-        {blogpost.comments.length? <h3>Comments</h3> : <h3>No comments yet</h3>}
-        {blogpost.comments.map(comment => (
-          <div className='comment-details' key={comment.id || comment._id}>
-            {deletedComments.includes(comment._id)? <p className='comment-text'>Comment successfully deleted</p> :
-            <div className='bg-white rounded-xl my-2 p-2 flex justify-between items-start'>
-              <div>
-                <p className='comment-info'> <span className='font-bold'><Link to={`/users/${comment.user}`}>{comment.user}</Link></span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
-                <p className='comment-text'>{comment.text}</p>
+        {isLoadingComments? <h1>Loading... components</h1> : ""}
+        {blogpost.comments.length && comments?
+          <>
+          <h3>Comments</h3>
+            {comments.map(comment => (
+              <div className='comment-details' key={comment.id || comment._id}>
+                {deletedComments.includes(comment._id)? <p className='comment-text'>Comment successfully deleted</p> :
+                <div className='bg-white rounded-xl my-2 p-2 flex justify-between items-start'>
+                  <div>
+                    <p className='comment-info'> <span className='font-bold'><Link to={`/users/${comment.user._id}`}>{comment.user.username}</Link></span> - <span className=' font-light'>{formatTimestamp(comment.timestamp)}</span></p>
+                    <p className='comment-text'>{comment.text}</p>
+                  </div>
+                  {(comment.user._id === localStorage.getItem("userId") || blogpost.user._id === localStorage.getItem("userId")) &&
+                    <button className=' text-red-700 font-extrabold' onClick={() => deleteComment(comment._id)}>Delete</button>
+                  }
+                </div>
+                }
               </div>
-              {(comment.user._id === localStorage.getItem("userId") || blogpost.user._id === localStorage.getItem("userId")) &&
-                <button className=' text-red-700 font-extrabold' onClick={() => deleteComment(comment._id)}>Delete</button>
-              }
-            </div>
-            }
-          </div>
-        ))}
+            ))}
+          </>
+
+        : <h3>No comments yet</h3>
+        }
 
           <form onSubmit={createComment}>
             <input className='rounded-xl px-2 py-1' type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
