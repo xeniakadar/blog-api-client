@@ -67,9 +67,9 @@ export default function Homepage() {
   }
 
   return (
-    <div className='p-2 mt-2'>
+    <div className='p-2 mt-2  max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto'>
       {displayName && user && <h1 className={`homepage mb-2 font-secondary font-semibold text-2xl dark:text-white`}>{`Welcome to TripTrek, ${displayName}!`}</h1> }
-      <div className="grid md:grid-cols-2 gap-5">
+      <div className="grid  md:grid-cols-2 gap-5">
       <div className=" md:col-span-2 p-4 text-white bg-cover rounded-3xl h-48 md:h-[600px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${PalmGif})` } : {}}>
             <Link to="/topics">
                 <h1 className='blogposts--btn font-secondary text-left font-bold text-base md:text-7xl md:text-white hover:text-sky-200 transition-all ease-in-out duration-300 p-2 leading-6 '>Explore your dream destinations, delve into unique cultures, and find your next adventure.</h1>
@@ -77,7 +77,7 @@ export default function Homepage() {
         </div>
         <div className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl" style={blogposts && blogposts.length > 0 ? { backgroundColor: currentColorMap[blogposts[0].topic.title].color } : {}}>
             <Link to="/blogposts">
-                <h2 className='bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-400'>Click here for the latest blogposts!</h2>
+                <h2 className='bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-400 dark:hover:text-white'>Click here for the latest blogposts!</h2>
             </Link>
             {blogposts && blogposts.length > 0 && (
               <div className='bg-white dark:bg-opacity-20 rounded-2xl p-3'>
