@@ -55,7 +55,6 @@ export default function UserDetail() {
       const data = await response.json();
 
       if (response.ok) {
-        console.log(data);
         setDrafts(data);
       } else {
         throw new Error(`HTTP error! Status: ${response.status}`);

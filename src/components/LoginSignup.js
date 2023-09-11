@@ -21,9 +21,6 @@ export default function LoginSignup() {
   const navigate = useNavigate();
   const {user, setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log("useContext user info:", user);
-  }, [user]);
 
   function passwordValid(password) {
     //1 capital letter, 1 number and min 6 characters
@@ -70,7 +67,7 @@ export default function LoginSignup() {
 
       const data = await response.json();
       if (response.ok) {
-        console.log("User created successfully:", data);
+        console.log("User created successfully");
         window.location.reload();
       } else {
         console.error("Error creating user:", data);

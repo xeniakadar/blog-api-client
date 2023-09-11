@@ -30,7 +30,6 @@ function Navbar() {
     }
 
     window.addEventListener('storage', handleThemeChange);
-    console.log(user)
 
     return () => {
       window.removeEventListener('storage', handleThemeChange);

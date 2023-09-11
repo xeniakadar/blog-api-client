@@ -49,7 +49,7 @@ export default function PostCreate() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("blogpost created", data);
+        console.log("blogpost created");
         navigate("/blogposts")
       } else {
         const errorData = await response.json();
@@ -83,7 +83,7 @@ export default function PostCreate() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("blogpost created", data);
+        console.log("blogpost created");
         navigate("/blogposts")
       } else {
         const errorData = await response.json();

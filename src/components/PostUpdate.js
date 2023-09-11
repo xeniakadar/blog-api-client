@@ -66,7 +66,6 @@ export default function PostUpdate() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("blogpost created", data);
         navigate("/blogposts")
       } else {
         const errorData = await response.json();
@@ -94,7 +93,6 @@ export default function PostUpdate() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("blogpost created", data);
         navigate("/blogposts")
       } else {
         const errorData = await response.json();

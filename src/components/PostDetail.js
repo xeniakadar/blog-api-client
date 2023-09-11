@@ -68,7 +68,6 @@ export default function PostDetail() {
         const data = await response.json();
 
         if (response.ok) {
-          console.log(data);
           setComments(data);
         } else {
           console.error("failed to fetch comment", data);
@@ -124,8 +123,6 @@ export default function PostDetail() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("prevcomments: ", comments);
-        console.log("comment added", data);
         setCommentText('');
         setComments(prevComments => [...prevComments, data.comment]);
       } else {
