@@ -1,6 +1,6 @@
 {
   "name": "blog-api-client",
-  "homepage": "http:/xeniakadar.github.io/blog-api-client",
+  "homepage": "https://xeniakadar.github.io/blog-api-client/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -13,6 +13,7 @@ import LoginSignup from './components/LoginSignup';
 import PostCreate from './components/PostCreate';
 import PostUpdate from './components/PostUpdate';
 import UserDetail from './components/UserDetail';
+import Footer from './components/Footer';
 import ThemeContext from './contexts/ThemeContext';
 import UserContext from './contexts/UserContext';
 import "./App.css"
@@ -44,6 +45,7 @@ function App() {
             </Route>
             <Route path='/authenticate' element={<LoginSignup />} />
           </Routes>
+          <Footer />
         </div>
       </ThemeContext.Provider>
     </UserContext.Provider>
