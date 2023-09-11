@@ -1,11 +1,7 @@
-import React, {useContext, Fragment, useRef, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import PostHomepage from './PostShort';
-import PostDropdown from './PostDropdown';
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import deleteBlogpost from '../helpers/deleteBlogpost';
 
 export default function UserDetail() {
 

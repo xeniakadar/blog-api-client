@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import ThemeContext from '../contexts/ThemeContext';
 
