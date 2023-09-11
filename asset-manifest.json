@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/blog-api-client/static/css/main.84a38f06.css",
+    "main.js": "/blog-api-client/static/js/main.06879c08.js",
+    "static/media/Sea.gif": "/blog-api-client/static/media/Sea.8c7fb242d4ed3b5c8fac.gif",
+    "static/media/Italy.gif": "/blog-api-client/static/media/Italy.858667b285fa5e190a02.gif",
+    "static/media/Palm.gif": "/blog-api-client/static/media/Palm.66378d87ab40b88da4cd.gif",
+    "static/media/Mountains.jpeg": "/blog-api-client/static/media/Mountains.bf0de435202e1b416c64.jpeg",
+    "static/media/City.jpeg": "/blog-api-client/static/media/City.151b80cc05f6ee66435a.jpeg",
+    "static/media/Beach.jpeg": "/blog-api-client/static/media/Beach.3a2f8231e9d297c33894.jpeg",
+    "static/media/Tropics.jpeg": "/blog-api-client/static/media/Tropics.e3a600464ac695979be6.jpeg",
+    "static/media/Winter.jpeg": "/blog-api-client/static/media/Winter.091be06de554ad060077.jpeg",
+    "static/media/triptrek-dark.png": "/blog-api-client/static/media/triptrek-dark.e5cf4b9c9d25b76f240c.png",
+    "static/media/Desert.jpeg": "/blog-api-client/static/media/Desert.b9e209fe59ef0aff420b.jpeg",
+    "static/media/triptrek.png": "/blog-api-client/static/media/triptrek.0c9088e6186b8ab3cd3e.png",
+    "index.html": "/blog-api-client/index.html",
+    "main.84a38f06.css.map": "/blog-api-client/static/css/main.84a38f06.css.map",
+    "main.06879c08.js.map": "/blog-api-client/static/js/main.06879c08.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84a38f06.css",
+    "static/js/main.06879c08.js"
+  ]
+}
