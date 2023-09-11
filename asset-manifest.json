@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/blog-api-client/static/css/main.84a38f06.css",
-    "main.js": "/blog-api-client/static/js/main.06879c08.js",
+    "main.js": "/blog-api-client/static/js/main.83c72038.js",
     "static/media/Sea.gif": "/blog-api-client/static/media/Sea.8c7fb242d4ed3b5c8fac.gif",
     "static/media/Italy.gif": "/blog-api-client/static/media/Italy.858667b285fa5e190a02.gif",
     "static/media/Palm.gif": "/blog-api-client/static/media/Palm.66378d87ab40b88da4cd.gif",
@@ -15,10 +15,10 @@
     "static/media/triptrek.png": "/blog-api-client/static/media/triptrek.0c9088e6186b8ab3cd3e.png",
     "index.html": "/blog-api-client/index.html",
     "main.84a38f06.css.map": "/blog-api-client/static/css/main.84a38f06.css.map",
-    "main.06879c08.js.map": "/blog-api-client/static/js/main.06879c08.js.map"
+    "main.83c72038.js.map": "/blog-api-client/static/js/main.83c72038.js.map"
   },
   "entrypoints": [
     "static/css/main.84a38f06.css",
-    "static/js/main.06879c08.js"
+    "static/js/main.83c72038.js"
   ]
 }
