@@ -124,10 +124,10 @@ export default function PostDetail() {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log("prevcomments: ", comments);
         console.log("comment added", data);
         setCommentText('');
-        window.location.reload(); // change
-        // setComments(prevComments => [...prevComments, data]);
+        setComments(prevComments => [...prevComments, data.comment]);
       } else {
         const errorData = await response.json();
         console.error("error creating post: ", errorData);
@@ -148,8 +148,8 @@ export default function PostDetail() {
       });
       if (response.ok) {
         console.log("comment deleted");
+        setComments(prevComments => prevComments.filter(comment => comment._id !== commentId));
         setDeletedComments(prevComments => [...prevComments, commentId]);
-        // setComments(prevComments => prevComments.filter(comment => comment._id !== commentId));
       } else {
         const errorData = await response.json();
         console.error("error deleting comment:", errorData);
@@ -186,7 +186,7 @@ export default function PostDetail() {
           </div>
         }
         <div className='comments-container rounded-2xl px-3 py-2 mt-10' style={blogpost ? { backgroundColor: colorDarkMap[blogpost.topic.title].color } : {}}>
-        {isLoadingComments? <h1>Loading... components</h1> : ""}
+        {isLoadingComments? <h1>Loading comments...</h1> : ""}
         { comments?
           <>
           <h3>Comments</h3>
