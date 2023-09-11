@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LoginSignup from '../components/LoginSignup'; // Update with your path
+import LoginSignup from '../components/LoginSignup';
 import UserContext from '../contexts/UserContext';
 
 const mockNavigate = jest.fn();
@@ -63,7 +63,7 @@ describe('<LoginSignup />', () => {
       </UserContext.Provider>
     );
 
-    fireEvent.click(getByText('Sign Up'));  // To activate the Sign Up tab
+    fireEvent.click(getByText('Sign Up'));
 
     const usernameInput = getByPlaceholderText('Username');
     const emailInput = getByPlaceholderText('Email');

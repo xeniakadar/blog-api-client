@@ -9,7 +9,7 @@ import deleteBlogpost from '../helpers/deleteBlogpost';
 export default function PostShort({title, text, username, timestamp, topic, blogpostId, userId, topicId}) {
 
   const { theme } = useContext(ThemeContext);
-  const previewText = createPreview(text, 200);
+  const previewText = createPreview(text, 300);
 
   const colorMap = {
     'Beach': { color: '#8ecae6' },
@@ -49,7 +49,11 @@ export default function PostShort({title, text, username, timestamp, topic, blog
           <h2 className='title  ease-in-out duration-300 w-max py-1 px-3 rounded-2xl md:text-lg font-secondary font-bold ' style={topic ? { backgroundColor: colorDarkMap[topic].color, color: colorMap[topic].color } : {}}> <Link to={`topics/${topicId}`}>{topic.toUpperCase()}</Link> <span>/</span> <span className='text-white'> <Link to={`/blogposts/${blogpostId}`}>{title.toUpperCase()}</Link></span> </h2>
           : <h2 className='title ease-in-out duration-300 w-max py-1 px-3 rounded-2xl md:text-lg font-secondary font-bold ' style={topic ? { backgroundColor: colorDarkMap[topic].color, color: colorMap[topic].color } : {}}>{topic.toUpperCase()} <span>/</span> <span className='text-white'> <Link to={`/blogposts/${blogpostId}`}>{title.toUpperCase()}</Link></span> </h2>
         }
-        {currentUser === userId ? <PostDropdown blogpostId={blogpostId} deleteBlogpost={deleteBlogpost}/> : null}
+        {currentUser === userId ?
+        <div className='ml-1'>
+          <PostDropdown blogpostId={blogpostId} deleteBlogpost={deleteBlogpost}/>
+        </div>
+        : null}
         </div>
         <p className='text font-primary font-light text-sm md:text-base py-3'>{previewText}</p>
       </div>

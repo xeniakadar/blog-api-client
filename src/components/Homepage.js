@@ -56,7 +56,7 @@ export default function Homepage() {
   let previewTextFirst = "";
   let BlogpostIdFirst = "";
   if (blogposts && blogposts.length > 0) {
-    previewTextFirst = createPreview(blogposts[0].text, 450);
+    previewTextFirst = createPreview(blogposts[0].text, 440);
     BlogpostIdFirst = blogposts[0]._id
   }
   let previewTextSecond = "";
@@ -72,7 +72,7 @@ export default function Homepage() {
       <div className="grid  md:grid-cols-2 gap-5">
       <div className=" md:col-span-2 p-4 text-white bg-cover rounded-3xl h-48 md:h-[600px]" style={blogposts && blogposts.length > 0 ? { backgroundImage: `url(${PalmGif})` } : {}}>
             <Link to="/topics">
-                <h1 className='blogposts--btn font-secondary text-left font-bold text-base md:text-7xl md:text-white hover:text-sky-200 transition-all ease-in-out duration-300 p-2 leading-6 '>Explore your dream destinations, delve into unique cultures, and find your next adventure.</h1>
+                <h1 className='blogposts--btn font-secondary text-left font-bold text-2xl md:text-7xl md:text-white hover:text-sky-200 transition-all ease-in-out duration-300 p-2 leading-6 '>Explore your dream destinations, delve into unique cultures, and find your next adventure.</h1>
             </Link>
         </div>
         <div className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl" style={blogposts && blogposts.length > 0 ? { backgroundColor: currentColorMap[blogposts[0].topic.title].color } : {}}>

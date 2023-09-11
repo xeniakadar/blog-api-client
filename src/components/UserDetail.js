@@ -115,7 +115,7 @@ export default function UserDetail() {
           {drafts.length > 0 &&
           <>
             <h1 className='dark:text-white font-secondary z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto'>Drafts</h1>
-            <p className='font-primary font-light text-base md:text-lg pb-3'>Edit and publish your drafts</p>
+            <p className='font-primary dark:text-white font-light text-base md:text-lg pb-3'>Edit and publish your drafts</p>
           </>
           }
 

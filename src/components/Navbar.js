@@ -59,7 +59,7 @@ function Navbar() {
         <li>
             <Link to={"/"} className="home-btn">
                 {theme === "light"
-                ? <img src={tripImg} className="h-10 md:h-12" alt="home" />
+                ? <img src={tripImg} className="h-10 md:h-12 " alt="home" />
                 : <img src={darkTripImg} className="h-10 md:h-12" alt="home" />}
             </Link>
         </li>

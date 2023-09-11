@@ -17,7 +17,6 @@ export default function PostCreate() {
       try {
         const response = await fetch("https://blog-api-production-c42d.up.railway.app/api/topics");
         const data = await response.json();
-
         if (response.ok) {
           setTopics(data);
           setSelectedTopic(data[0]?._id || null)
