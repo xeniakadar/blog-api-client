@@ -13,7 +13,7 @@ export default function PostDetail() {
   const [blogpostDeleted, setBlogpostDeleted] = useState(false);
   const [deletedComments, setDeletedComments] = useState([]);
   const [isLoadingComments, setIsLoadingComments] = useState(true);
-
+  const [loggedIn, setLoggedIn ] = useState(false);
 
   const colorMap = {
     'Beach': { color: '#8ecae6' },
@@ -46,6 +46,14 @@ export default function PostDetail() {
   const {blogpostId} = useParams();
   const navigate = useNavigate();
 
+
+  function checkLogged() {
+    if (localStorage.getItem("token") !== null) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false)
+    }
+  }
   useEffect(() => {
     async function fetchBlogpost() {
       try {
@@ -81,7 +89,8 @@ export default function PostDetail() {
 
     fetchBlogpost();
     fetchCommentsForBlogpost();
-  }, [blogpostId]);
+    checkLogged();
+  }, [blogpostId, loggedIn]);
 
   async function deleteBlogpost(e) {
     e.preventDefault();
@@ -209,7 +218,7 @@ export default function PostDetail() {
 
           <form onSubmit={createComment}>
             <input className='rounded-xl px-2 py-1' type="text" id="comment" name="comment" placeholder=' Add comment...' value={commentText} onChange={e => setCommentText(e.target.value)} />
-            <input className='btn-submit  border-white border-2 hover:bg-sky-900 hover:text-white rounded-xl px-2 py-1 ml-2 bg-white text-sky-900 ease-in-out duration-300' type="submit" value="Add comment" />
+            <input disabled={!loggedIn} className={`btn-submit ${loggedIn? "" : "bg-slate-500 text-slate-400 border-slate-500 hover:bg-slate-500 hover:text-slate-400"}  border-white border-2 hover:bg-sky-900 hover:text-white rounded-xl px-2 py-1 ml-2 bg-white text-sky-900 ease-in-out duration-300`} type="submit" value="Add comment" />
           </form>
         </div>
       </>
