@@ -43,3 +43,6 @@ I used Google Lighthouse to run over my application to check its performance, ac
 **Full-Stack Integration**: Gained hands-on experience in creating a full-stack application by integrating a React-based frontend with an Express.js backend, learning the intricacies of routing, API calls, and data management between client and server.
 
 **Frontend Enhancements with React**: Improved UI/UX design skills by utilizing React's component-based architecture, state management, and context API. Leveraged libraries like Tailwind CSS to ensure responsive design, and optimized the user experience with features like themed layouts.
+
+## Work in progress
+Currently I'm working on creating some more features and making the application more efficient. Compressing and optimizing images is my current priority, but I will be adding other features, like a markdown text-editor and adding likes to posts.
