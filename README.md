@@ -44,5 +44,7 @@ I used Google Lighthouse to run over my application to check its performance, ac
 
 **Frontend Enhancements with React**: Improved UI/UX design skills by utilizing React's component-based architecture, state management, and context API. Leveraged libraries like Tailwind CSS to ensure responsive design, and optimized the user experience with features like themed layouts.
 
+**Testing with Jest**: The intricacies of this app, with its diverse range of functionalities, demanded a robust system to ensure each component worked flawlessly. With Jest, I learned not only how to set up and run unit tests but also the importance of mock functions, simulating user events, and isolating test cases.
+
 ## Work in progress
 Currently I'm working on creating some more features and making the application more efficient. Compressing and optimizing images is my current priority, but I will be adding other features, like a markdown text-editor and adding likes to posts.
