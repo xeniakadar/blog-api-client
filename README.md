@@ -34,6 +34,7 @@ I used Google Lighthouse to run over my application to check its performance, ac
 ## Tech Stack
 - React.js
 - Tailwind CSS
+- Jest
 - Node.js
 - Express
 - MongoDB
