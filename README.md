@@ -12,20 +12,19 @@ Click [here](https://xeniakadar.github.io/blog-api-client/#/) for the live demo.
 
 ## Showcase
 Here's the live preview of the website. Scroll to get a more detailed explanation for each step. Check out the cool light/dark mode toggle!
-<img src="./public/images/recording.gif" alt="recording" />
+<img src="./public/images/recording.gif" alt="recording" width="800px" />
 First, the user is taken to the homepage, where they are invited to explore the blogposts, they are shown the 2 latest blogposts posted (the color of that container changes depending on the topic of the latest blogpost). If the user is singed in, they're invited to create a new blogpost, if they are not signed in, they're invited to create an account or sign in.
-<img src="./public/images/homepage.png" alt="homepage" />
+<img src="./public/images/homepage.png" alt="homepage" width="800px"/>
 When a user creates an account, the user is told if the username is already taken, if the email is valid or if the password is secure enough. Same goes for the login info.
 <img src="./public/images/login.png" alt="login" />
 The user can explore blogposts by topics and can even click on a user to check out all the blogposts by them. When the user is logged in, they can go on their profile and take a look at the posts they've posted, or posts they have saved in drafts.
-<img src="./public/images/profile.png" alt="profile" />
-<img src="./public/images/destinations.png" alt="destinations" />
-<img src="./public/images/topicdetail.png" alt="topic detail" />
-<img src="./public/images/postlist-dark.png" alt="postlist dark" />
-<img src="./public/images/postlist-light.png" alt="postlist light" />
+<img src="./public/images/profile.png" alt="profile" width="800px" />
+<img src="./public/images/destinations.png" alt="destinations" width="800px" />
+<img src="./public/images/topicdetail.png" alt="topic detail" width="800px" />
+<img src="./public/images/postlist-dark.png" alt="postlist dark" width="800px" />
+<img src="./public/images/postlist-light.png" alt="postlist light" width="800px" />
 This was a mobile first design, so here are some previews of the mobile version of the app:
-<img src="./public/images/mobile-1.png" alt="mobile view 1" />
-<img src="./public/images/mobile-2.png" alt="mobile view 2" />
+<img src="./public/images/mobile-1.png" alt="mobile view 1" width="400px"/> <img src="./public/images/mobile-2.png" alt="mobile view 2" width="400px"/>
 
 ## Performance
 I used Google Lighthouse to run over my application to check its performance, accessibility, use of best practives and SEO opitimization.
