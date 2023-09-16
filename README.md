@@ -1,16 +1,20 @@
 # TripTrek Blog
 
 ## Link to the API
+
 [Blog Api](https://github.com/xeniakadar/blog-api)
 
 ## Short Description
+
 The app is a dynamic blogging platform where users can share their thoughts and experiences on a variety of topics ranging from beach escapades to city explorations. Each blog post is categorized under specific themes, offering a unique color-coded presentation for easy navigation. Users can engage further by leaving comments on individual posts, fostering a vibrant community of like-minded individuals. Built with React, the front-end provides a seamless and interactive user experience, enhanced by theme-context and efficient API integrations.
 
 ## Demo
+
 Click [here](https://xeniakadar.github.io/blog-api-client/#/) for the live demo. If you don't want to make an account, feel free to use the username
 **test123** and password **Test123**.
 
 ## Showcase
+
 Here's the live preview of the website. Scroll to get a more detailed explanation for each step. Check out the cool light/dark mode toggle!
 <img src="./public/images/recording.gif" alt="recording" width="800px" />
 First, the user is taken to the homepage, where they are invited to explore the blogposts, they are shown the 2 latest blogposts posted (the color of that container changes depending on the topic of the latest blogpost). If the user is singed in, they're invited to create a new blogpost, if they are not signed in, they're invited to create an account or sign in.
@@ -27,11 +31,13 @@ This was a mobile first design, so here are some previews of the mobile version 
 <img src="./public/images/mobile-1.png" alt="mobile view 1" width="400px"/> <img src="./public/images/mobile-2.png" alt="mobile view 2" width="400px"/>
 
 ## Performance
+
 I used Google Lighthouse to run over my application to check its performance, accessibility, use of best practives and SEO opitimization.
 
 <img src="./public/images/lighthouse.png" alt="lighthouse" />
 
 ## Tech Stack
+
 - React.js
 - Tailwind CSS
 - Jest
@@ -48,4 +54,5 @@ I used Google Lighthouse to run over my application to check its performance, ac
 **Testing with Jest**: The intricacies of this app, with its diverse range of functionalities, demanded a robust system to ensure each component worked flawlessly. With Jest, I learned not only how to set up and run unit tests but also the importance of mock functions, simulating user events, and isolating test cases.
 
 ## Work in progress
+
 Currently I'm working on creating some more features and making the application more efficient. Compressing and optimizing images is my current priority, but I will be adding other features, like a markdown text-editor and adding likes to posts.
