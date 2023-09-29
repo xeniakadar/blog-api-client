@@ -54,14 +54,6 @@ export default function TopicDetail() {
     getBlogpostsForTopic();
   }, [topicId]);
 
-  if (!blogposts) {
-    return (
-      <div className="blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3">
-        <p className="dark:text-white">Loading ... </p>
-      </div>
-    );
-  }
-
   return (
     <div className="p-2 mx-2 h-screen">
       {topic ? (
@@ -81,7 +73,12 @@ export default function TopicDetail() {
           </h2>
         </div>
       ) : null}
-      {blogposts.length < 1 && (
+      {!blogposts && (
+        <div className="blogpost-detail-container h-screen md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto mb-3 p-3">
+          <p className="dark:text-white">Loading ... </p>
+        </div>
+      )}
+      {blogposts.length === 0 && (
         <>
           <div
             className="relative h-72 p-4 bg-cover rounded-3xl md:h-[400px]"
