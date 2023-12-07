@@ -46,7 +46,6 @@ function Navbar() {
 
   const logoutUser = () => {
     localStorage.clear();
-    setUser(null);
     window.location.reload();
   };
 
@@ -64,7 +63,7 @@ function Navbar() {
         </li>
         <button
           className={`absolute top-2 right-2 w-24 text-center font-bold md:hidden z-50 border-2 rounded-2xl border-gray-950 dark:border-white dark:text-white p-2 ${
-            menuVisible ? "bg-black text-white" : ""
+            menuVisible ? " text-white" : ""
           }`}
           onClick={toggleMenu}
         >
@@ -79,7 +78,10 @@ function Navbar() {
                 : "hidden"
             } md:flex flex-col w-full justify-end items-end bg-white dark:bg-sky-950 md:bg-black/[.06] dark:md:bg-white/[.1] md:rounded-2xl z-20 leading-16 md:flex-row md:w-fit md:h-auto rounded-3xl`}
           >
-            <DarkModeToggle />
+            <div className="w-full md:w-auto">
+              <DarkModeToggle />
+            </div>
+
             <Link
               to={"/"}
               onClick={handleLinkClick}

@@ -75,7 +75,7 @@ export default function UserDetail() {
   }, []);
 
   return (
-    <div className="-z-0 p-2 mb-0 max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto mt-3 p-3">
+    <div className="-z-0 mb-0 max-h-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl md:rounded-3xl md:p-6 min-h-screen mx-auto mt-3 p-3">
       {localUserId === currentUserId ? (
         <div className="mb-3">
           <h1 className=" dark:text-white font-secondary pb-2 z-0 text-3xl md:text-5xl font-extrabold w-full md:w-9/10 lg:w-9/10 xl:w-88 xl:max-w-6xl mx-auto">

@@ -78,7 +78,7 @@ export default function TopicDetail() {
           <p className="dark:text-white">Loading ... </p>
         </div>
       )}
-      {blogposts.length === 0 && (
+      {blogposts && blogposts.length === 0 && (
         <>
           <div
             className="relative h-72 p-4 bg-cover rounded-3xl md:h-[400px]"
