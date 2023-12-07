@@ -92,7 +92,7 @@ export default function Homepage() {
           </Link>
         </div>
         <div
-          className=" md:col-span-1 h-max md:row-span-2 p-4 bg-cover rounded-3xl"
+          className=" md:col-span-1 h-max md:row-span-2 md-p-4 bg-cover rounded-3xl" //check if this still works when online
           style={
             blogposts && blogposts.length > 0
               ? {
@@ -103,7 +103,7 @@ export default function Homepage() {
           }
         >
           <Link to="/blogposts">
-            <h2 className="bg-white bg-opacity-50 font-secondary font-bold w-m text-lg rounded-2xl p-3 mb-2 transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-400 dark:hover:text-white">
+            <h2 className="bg-white bg-opacity-50 font-secondary font-bold text-lg rounded-2xl p-3 mb-2 sm transition-all ease-in-out duration-300 text-sky-950 hover:text-sky-400 dark:hover:text-white">
               Click here for the latest blogposts!
             </h2>
           </Link>
