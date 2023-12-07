@@ -63,7 +63,7 @@ function Navbar() {
         </li>
         <button
           className={`absolute top-2 right-2 w-24 text-center font-bold md:hidden z-50 border-2 rounded-2xl border-gray-950 dark:border-white dark:text-white p-2 ${
-            menuVisible ? " text-white" : ""
+            menuVisible ? " dark:text-white text-black" : ""
           }`}
           onClick={toggleMenu}
         >
